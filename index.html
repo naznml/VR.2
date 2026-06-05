@@ -1,1 +1,645 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Вариант 2 — Магистратура КТ</title>
 
+  <style>
+    *{box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+
+    body{
+      margin:0;
+      font-family:Arial,sans-serif;
+      background:linear-gradient(135deg,#eef7ff,#f6fff4);
+      color:#1b1b1b;
+    }
+
+    .wrapper{
+      max-width:950px;
+      margin:auto;
+      padding:16px;
+    }
+
+    .hero{
+      background:linear-gradient(135deg,#1565c0,#43a047);
+      color:white;
+      padding:28px 20px;
+      border-radius:22px;
+      text-align:center;
+      margin-bottom:18px;
+      box-shadow:0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    .hero h1{
+      margin:0 0 10px;
+      font-size:30px;
+      line-height:1.2;
+    }
+
+    .hero p{
+      margin:8px 0;
+      font-size:16px;
+      line-height:1.5;
+    }
+
+    .badge{
+      display:inline-block;
+      background:white;
+      color:#1565c0;
+      padding:8px 14px;
+      border-radius:999px;
+      font-weight:bold;
+      margin-top:12px;
+      font-size:14px;
+    }
+
+    .nav-buttons{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:10px;
+      margin-bottom:18px;
+    }
+
+    .nav-buttons a{
+      text-align:center;
+      text-decoration:none;
+      background:white;
+      color:#1565c0;
+      padding:14px;
+      border-radius:14px;
+      font-weight:bold;
+      box-shadow:0 5px 15px rgba(0,0,0,0.08);
+      border:1px solid #dbeafe;
+    }
+
+    .card{
+      background:white;
+      padding:22px;
+      border-radius:20px;
+      margin-bottom:18px;
+      box-shadow:0 6px 18px rgba(0,0,0,0.08);
+    }
+
+    .card h2{
+      margin-top:0;
+      color:#1565c0;
+      font-size:22px;
+    }
+
+    .section-title{
+      background:#e3f2fd;
+      border-left:5px solid #1565c0;
+      padding:14px;
+      border-radius:14px;
+      margin-bottom:18px;
+    }
+
+    .question{
+      background:#f7f7f7;
+      padding:18px;
+      border-radius:16px;
+      margin-bottom:16px;
+      border-left:5px solid #43a047;
+    }
+
+    .question b{
+      display:block;
+      margin-bottom:12px;
+      font-size:16px;
+      line-height:1.5;
+    }
+
+    label{
+      display:block;
+      background:white;
+      padding:12px;
+      border-radius:12px;
+      margin:8px 0;
+      border:1px solid #ddd;
+      cursor:pointer;
+      line-height:1.4;
+    }
+
+    label:hover{
+      background:#e8f5e9;
+    }
+
+    input[type="radio"]{
+      margin-right:8px;
+      transform:scale(1.1);
+    }
+
+    .question-image{
+      width:100%;
+      max-width:460px;
+      display:block;
+      margin:12px auto 16px;
+      border-radius:14px;
+      border:1px solid #ddd;
+      box-shadow:0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .text-box{
+      background:#fafafa;
+      padding:16px;
+      border-radius:16px;
+      line-height:1.6;
+      margin-bottom:18px;
+      border:1px solid #ddd;
+      font-size:15px;
+    }
+
+    button{
+      width:100%;
+      background:#1565c0;
+      color:white;
+      border:none;
+      padding:16px;
+      border-radius:14px;
+      cursor:pointer;
+      font-size:18px;
+      font-weight:bold;
+      margin-top:10px;
+    }
+
+    button:hover{
+      background:#0d47a1;
+    }
+
+    .result-box{
+      background:#e8f5e9;
+      border:2px solid #43a047;
+      padding:22px;
+      border-radius:20px;
+      text-align:center;
+      margin-bottom:18px;
+    }
+
+    .result-box h2{
+      margin-top:0;
+      color:#2e7d32;
+    }
+
+    .score-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:10px;
+      margin-top:15px;
+    }
+
+    .score-item{
+      background:white;
+      padding:12px;
+      border-radius:14px;
+      font-weight:bold;
+    }
+
+    .correct{
+      color:green;
+      font-weight:bold;
+    }
+
+    .wrong{
+      color:red;
+      font-weight:bold;
+    }
+
+    .explanation{
+      background:#f1f8e9;
+      padding:12px;
+      margin:10px 0 18px;
+      border-radius:12px;
+      line-height:1.5;
+    }
+
+    .footer{
+      text-align:center;
+      color:#555;
+      font-size:14px;
+      padding:20px 0;
+    }
+
+    @media(max-width:600px){
+      .wrapper{padding:12px;}
+      .hero{padding:24px 16px;border-radius:18px;}
+      .hero h1{font-size:24px;}
+      .hero p{font-size:15px;}
+      .nav-buttons{grid-template-columns:1fr;}
+      .card{padding:16px;border-radius:17px;}
+      .question{padding:15px;}
+      .question b{font-size:15px;}
+      label{font-size:15px;padding:11px;}
+      button{font-size:16px;padding:15px;}
+      .score-grid{grid-template-columns:1fr;}
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="wrapper">
+
+  <div class="hero">
+    <h1>Вариант 2 — Магистратура КТ</h1>
+    <p>Сыни ойлау және аналитикалық ойлау бөлімі</p>
+    <span class="badge">30 сұрақ • Нәтиже бірден шығады</span>
+  </div>
+
+  <div class="nav-buttons">
+    <a href="#critical">Сыни ойлау</a>
+    <a href="#analytical">Аналитикалық ойлау</a>
+  </div>
+
+  <div class="card">
+    <h2>Нұсқаулық</h2>
+    <p>Бұл тест 2 бөлімнен тұрады:</p>
+    <ul>
+      <li><b>Сыни ойлау:</b> 1–15 сұрақ</li>
+      <li><b>Аналитикалық ойлау:</b> 16–30 сұрақ</li>
+    </ul>
+    <p>Барлық сұрақтарға жауап беріп, соңында нәтижені және түсіндірмелерді көріңіз.</p>
+  </div>
+
+  <section id="critical" class="card">
+    <div class="section-title">
+      <h2>Part 1. Сыни ойлау</h2>
+      <p>Дұрыс жауапты таңдаңыз.</p>
+    </div>
+
+    <div id="criticalQuiz"></div>
+    <div id="criticalResults"></div>
+  </section>
+
+  <section id="analytical" class="card">
+    <div class="section-title">
+      <h2>Part 2. Аналитикалық ойлау</h2>
+      <p>Мәтінді оқып, дұрыс жауапты таңдаңыз.</p>
+    </div>
+
+    <div id="analyticalIntro"></div>
+
+    <h2>Мәтін 1</h2>
+    <div class="text-box">
+      <p>Үлкен сарышұнақ тиінге ұқсайды. Бұлардың созыңқы тұрқы 14-40 см, құйрығы шағын, ұзындығы денесінің жартысына сирек жетеді, құлақтары қысқа әрі толықтай жалаң, көздері үлкен және артқы аяқтары алдыңғыларына қарағанда ұзынырақ. Жалпы түсі - сарғыш-сұр, жотасы қоңырқай тартқан, жүні жұмсақ, қалың.</p>
+      <p>Қыста сарышұнақ басқа кеміргіштер сияқты жүнінің құрылымын ауыстыруға бейім. Қыста жүні жұмсақ әрі қалың болса, ал жазда керісінше сиректейді, бірақ нығаяды. Сарышұнақтарды атжалмандармен жақ сыртындағы қапшыққа азығын жасыру әдеті жақындастырады. Мекендеу түрі бойынша бұл кеміргіш отаршыл. Сарышұнақтар қыста ұйқыға кетуге бейім, бірақ кейде бұл құбылыс аңдар арасында азық жетіспегендіктен жаз мезгілінде де байқалады.</p>
+    </div>
+    <div id="analyticalText1"></div>
+
+    <h2>Мәтін 2</h2>
+    <div class="text-box">
+      <p>Ерте замандағы Персия мен Үндістан және Греция әлемнің алғашқы астрономиялық жаңалықтарын ашқан. Грек тілінде жазған Рим Птоломейі Жер - дүниенің орталығы болып табылады және оны күн мен планеталар және жұлдыздар айналады деп сенген. Оның теориясы 16-шы ғасырға дейін жалғасқан.</p>
+      <p>Алайда поляк Коперник Рим католиктерінің теориясына қарсы болып, күннің - күн жүйесінің орталығы екендігін дәлелдеген. Коперниктің теориясын кейінірек телескопты дамытқан италияндық ғалым Галилео Галилей растаған. Әрине, Астрономия жылы Галилеоның 1609 жылы ашқан жаңалықтарының 400 жылдығына арналып отыр. Ватикан билігі сол кезде үстемдік еткен дінге өзінің ғылыми жаңалығымен қарсы шыққан Галилеоны түрмеге жапқан болатын.</p>
+    </div>
+    <div id="analyticalText2"></div>
+
+    <h2>Мәтін 3</h2>
+    <div class="text-box">
+      <p>Сыйлық таңдау ешқашан оңай шаруа болған емес. Жаныңызға жақын адамға тосын сый жасап, қуантқыңыз-ақ келеді. Алайда, ұната ма, ұнатпай ма? Мұндай сыйлық беру жақсы ырым ба? Осындай дау-дамайлы сыйлықтардың бірі - сағат.</p>
+      <p>Ел аузында үйлену тойына тарту етілген сағат жас жұбайлар некесінің тез бұзылуына алып келеді. Бақытты адамдар сағат тақпайды деген сөздер аз айтылмайды. Сағат сыйлауға болмайды деген наным-сенім біздерге Қытайдан келген. Осы елдің тұрғындары сыйға алынған сағат - жерлеу рәсіміне шақыру деп түсінеді екен.</p>
+      <p>Ырымның екінші бір себебі ежелден бері сыйлыққа өткір зат беруге болмайды деген тыйымда жатыр. Пышаққа қатысты мұндай тыйымдардан өзіңіз де хабардар боларсыз. Өткір тілді сағаттар дәл осы тыйым салынған заттардың қатарына жатады. Жорамалмен келісер болсақ, өткір заттарды сыйлау арқылы сол адаммен қарым-қатынасыңызды өз қолыңызбен қырыққан боласыз.</p>
+    </div>
+    <div id="analyticalText3"></div>
+
+    <h2>Мәтін 4</h2>
+    <div class="text-box">
+      <p>«Логика сөйлемі», «психология коммуникациясы», «психологиялық қиялдау» секілді тіркестерді қолдану негізінде Қ. Жұбановта «ойды сөзбен білдіру» амалдарын жеке-жеке түсіндіріп көрсетуді мақсат етті. С. Аманжоловта «...тіл мәселесі ойлаусыз ешбір шешілмек емес» дей келе, кез келген тілдің құрылымдық элементін, олардың бір-бірімен қарым-қатынасын адамның ойлау әрекетімен бірлікте қарастыру қажеттігін ескертті.</p>
+      <p>Осындай сабақтасқан байланыстың нәтижесінде лингвистиканың бір саласы психолингвистика дүниеге келді. ХХ ғасырдың 50-60 жылдары бастау алған аталмыш сала психология ғылымының маңызды концепцияларына сүйене қалыптасты, яғни, К. Аханов көрсеткендей, «...психикалық құбылыстарды, атап айтқанда, түйсік пен қабылдау, елес пен ой, сезім мен тілек, бейімділік пен қабілет, ерік сапалары мен мінез белгілерін зерттейтін» психология лингвистикамен байланыса келе, олардың «сөйлеу процесімен» ұштасу ерекшелігін айқындауға мүмкіндік берді.</p>
+    </div>
+    <div id="analyticalText4"></div>
+
+    <div id="analyticalResults"></div>
+  </section>
+
+  <div class="card">
+    <button onclick="checkAnswers()">Нәтижені көру / Показать результат</button>
+  </div>
+
+  <div id="results"></div>
+
+  <div class="footer">
+    © Вариант 2 — Магистратура КТ
+  </div>
+
+</div>
+
+<script>
+const criticalQuestions = [
+  {
+    q:"1. 3x - 9 = 6 теңдеуін шешіңіз.",
+    options:["A) 1","B) 2","C) 3","D) 4","E) 5"],
+    answer:4,
+    explanation:"3x - 9 = 6 → 3x = 15 → x = 5. Дұрыс жауап — E."
+  },
+  {
+    q:"2. Аружанда музыка сақтайтын есте сақтау картасы бар. Есте сақтау картасының жады 2 GB (2000 MB). Егер 1 музыкасының жады 6 MB болса, есте сақтау картасына қанша музыка сақтауға болады?",
+    options:["A) 400","B) 500","C) 333","D) 422","E) 357"],
+    answer:2,
+    explanation:"2000 ÷ 6 = 333 толық музыка сақталады. Дұрыс жауап — C."
+  },
+  {
+    q:"3. Радиусы 2,7 см-ге тең дөңгелектің ауданын табу керек.",
+    options:["A) 10,8π см²","B) 8π см²","C) 7,29π см²","D) 8π см²","E) 5,4π см²"],
+    answer:2,
+    explanation:"S = πr² = π × 2,7² = 7,29π. Дұрыс жауап — C."
+  },
+  {
+    q:"4. Бағанды салыстырыңыз: x = 2, y = 3. A шамасы: x * y, B шамасы: y * x",
+    options:["A) Берілген мәлімет жеткіліксіз","B) А шамасы үлкен","C) Шамалар тең","D) В шамасы үлкен"],
+    answer:2,
+    explanation:"x × y = 2 × 3 = 6, y × x = 3 × 2 = 6. Шамалар тең. Дұрыс жауап — C."
+  },
+  {
+    q:"5. Жалпы ауылда сиыр саны = 6, тауық саны = 7, лақ саны = 5 болса, жалпы аяқтар саны?",
+    options:["A) 54","B) 58","C) 45","D) 52","E) 64"],
+    answer:1,
+    explanation:"Сиыр: 6*4=24, тауық: 7*2=14, лақ: 5*4=20. Барлығы: 24+14+20=58. Дұрыс жауап — B."
+  },
+  {
+    q:"6. Егер 3 < x < 5 және 4 < y < 6, онда x × y жататын аралық.",
+    options:["A) 3 < x*y < 6","B) 12 < x*y < 13","C) 3 < x*y < 11","D) 7 < x*y < 11","E) 12 < x*y < 30"],
+    answer:4,
+    explanation:"Ең кіші шегі 3*4=12, ең үлкен шегі 5*6=30. Сондықтан 12 < x*y < 30. Дұрыс жауап — E."
+  },
+  {
+    q:"7. Бес түрлі карточка берілген. Ең кіші сан қай карточкада болатынын табыңыз.",
+    options:["A) 2","B) 3","C) 4","D) 5","E) 1"],
+    answer:3,
+    explanation:"Жауап кілті бойынша ең кіші сан 5-карточкада. Дұрыс жауап — D."
+  },
+  {
+    q:"8. Анасының жасы 34-те, қызының жасы 8-де. Неше жылдан кейін анасының жасы қызының жасының екі есесіндей болады?",
+    options:["A) 34","B) 18","C) 16","D) 8","E) 42"],
+    answer:1,
+    explanation:"34+x = 2(8+x). 34+x = 16+2x. x = 18. Дұрыс жауап — B."
+  },
+  {
+    q:"9. Үш дос 400 м² еденді бояған. Талғар 35%, Бекзат 40%, ал қалғанын Ержан бояса, онда Ержан еденнің қандай ауданын бояғанын табыңыз.",
+    options:["A) 100 м²","B) 160 м²","C) 120 м²","D) 200 м²","E) 150 м²"],
+    answer:0,
+    explanation:"35%+40%=75%. Қалғаны 25%. 400-дің 25%-ы = 100 м². Дұрыс жауап — A."
+  },
+  {
+    q:"10. Сұрақ белгісінің орнындағы санды табыңыз.",
+    image:"IMG_0861.jpeg",
+    options:["A) 56","B) 63","C) 42","D) 49","E) 28"],
+    answer:0,
+    explanation:"Жауап кілті бойынша дұрыс жауап — 56. Дұрыс жауап — A."
+  },
+  {
+    q:"11. Бағанды салыстырыңыз: A шамасы: x – y, B шамасы: y – x",
+    options:["A) Берілген мәлімет жеткіліксіз","B) А шамасы үлкен","C) Шамалар тең","D) В шамасы үлкен"],
+    answer:0,
+    explanation:"x пен y туралы нақты мәлімет жоқ. Сондықтан салыстыруға мәлімет жеткіліксіз. Дұрыс жауап — A."
+  },
+  {
+    q:"12. 50 + (5 * 8) – 10 = есеп мәнінің 20% пайызы.",
+    options:["A) 12","B) 14","C) 17","D) 16","E) 13"],
+    answer:3,
+    explanation:"50 + 40 - 10 = 80. 80-нің 20%-ы = 16. Дұрыс жауап — D."
+  },
+  {
+    q:"13. x, y, z мәндерін табыңыз: x + 2y + 5z = -9; x - y + 3z = 2; 3x - 6y - z = 25",
+    options:["A) x = 3, y = -3, z = -1","B) x = 2, y = -3, z = -1","C) x = 2, y = 3, z = 1","D) x = 2, y = 2, z = 5","E) x = 0, y = 3, z = 1"],
+    answer:1,
+    explanation:"Жүйені шешкенде x=2, y=-3, z=-1 шығады. Дұрыс жауап — B."
+  },
+  {
+    q:"14. Диаграммада 11-сынып оқушыларының сандық құрамы көрсетілген. Мектептегі барлық 11-сынып оқушыларының саны 200 болса, 11 «А» сыныптарында барлығы неше оқушы бар екенін табыңыз.",
+    image:"IMG_0860.jpeg",
+    options:["A) 50","B) 60","C) 70","D) 80","E) 90"],
+    answer:1,
+    explanation:"Жауап кілті бойынша 11 «А» сыныптарында 60 оқушы. Дұрыс жауап — B."
+  },
+  {
+    q:"15. Қабырғасы 15 дм-ге тең квадраттың ауданын есептеңіз?",
+    options:["A) 225 дм²","B) 215 дм²","C) 245 дм²","D) 255 дм²","E) 265 дм²"],
+    answer:0,
+    explanation:"S = a² = 15² = 225 дм². Дұрыс жауап — A."
+  }
+];
+
+const analyticalIntroQuestions = [
+  {
+    q:"16. Шетелге саяхатқа шыққанда медициналық сақтандыру полисін […] керек.",
+    options:["A) тіркету","B) рәсімдеу","C) алып шығу","D) көрсету","E) әзірлеу"],
+    answer:2,
+    explanation:"Шетелге саяхатқа шыққанда сақтандыру полисін өзіңізбен бірге алып шығу керек. Дұрыс жауап — C."
+  },
+  {
+    q:"17. Көп нүкте орнына сәйкес сөз жазыңыз. Нұрсұлтан Назарбаев: « […] «туған жерге туынды тік» деп бекер айтпаған».",
+    options:["A) Қазақ","B) Адамдар","C) Жамағат","D) Халық","E) Ел"],
+    answer:0,
+    explanation:"Тұрақты тіркеске сай: «Қазақ туған жерге туыңды тік деп бекер айтпаған». Дұрыс жауап — A."
+  },
+  {
+    q:"18. Мәтіндегі бос орынды толтырыңыз. Кит – ең үлкен хайуан. Ол […] өмір сүреді.",
+    options:["A) көлде","B) су қоймасында","C) өзенде","D) мұхитта","E) теңізде"],
+    answer:3,
+    explanation:"Кит мұхитта өмір сүреді. Дұрыс жауап — D."
+  }
+];
+
+const analyticalText1Questions = [
+  {
+    q:"19. «Отаршыл» сөзіне мағынасы жақын сөзді табыңыз.",
+    options:["A) көшу","B) тартып алу","C) пайдалану","D) уақытша келу","E) орын ауыстыру"],
+    answer:1,
+    explanation:"Жауап кілті бойынша дұрыс жауап — B."
+  },
+  {
+    q:"20. Берілген мәтінге сәйкес тақырыпты таңдаңыз.",
+    options:["A) Сарышұнақтардың ерекшелігі","B) Сарышұнақтардың эволюциясы","C) Сарышұнақтардың мекендейтін ортасы","D) Сарышұнақ сипаты","E) Сарышұнақтардың қоректенуі"],
+    answer:3,
+    explanation:"Мәтінде сарышұнақтың сыртқы сипаты мен тіршілігі сипатталған. Дұрыс жауап — D."
+  },
+  {
+    q:"21. Берілген мәтіннің мақсатын анықтаңыз.",
+    options:["A) Сарышұнақ тіршілігін зерттеу","B) Сарышұнақ тіршілігін салыстыру","C) Сарышұнақтардың әдетін көрсету","D) Сарышұнақ тіршілігін сипаттау","E) Сарышұнақ тіршілігін қорыту"],
+    answer:3,
+    explanation:"Мәтіннің мақсаты — сарышұнақ тіршілігін сипаттау. Дұрыс жауап — D."
+  }
+];
+
+const analyticalText2Questions = [
+  {
+    q:"22. Берілген мәтіннің мақсатын анықтаңыз.",
+    options:["A) Ғылыми жаңалықтар туралы ақпарат беру","B) Ғылыми жаңалықтарды салыстыру","C) Жаңалықтардың ғылымилығын ашу","D) Жаңалықтардың шынайылығын зерттеу","E) Жаңалықтарды сараптау-талдау"],
+    answer:1,
+    explanation:"Жауап кілті бойынша дұрыс жауап — B."
+  },
+  {
+    q:"23. Берілген мәтінге сәйкес тақырыпты таңдаңыз.",
+    options:["A) Ғалымдар ойлары","B) Ғалымдар пікірі","C) Ғалымдар еңбегі","D) Ғалымдар зерттеулері","E) Ғалымдар жаңалығы"],
+    answer:0,
+    explanation:"Жауап кілті бойынша дұрыс жауап — A."
+  },
+  {
+    q:"24. «Дәлелдеген» сөзіне мағынасы жақын сөзді табыңыз.",
+    options:["A) жаңалық ретінде ашқан","B) теріске шығарған","C) пікір білдірген","D) зерттеуді жалғастырған","E) ғылымға еңбегі сіңген"],
+    answer:0,
+    explanation:"Берілген жауаптар ішінде мағынасы ең жақыны — жаңалық ретінде ашқан. Дұрыс жауап — A."
+  }
+];
+
+const analyticalText3Questions = [
+  {
+    q:"25. Берілген мәтіннің мақсатын анықтаңыз.",
+    options:["A) сыйлауға болатын сыйлықтарға талдау жүргізген","B) сыйлық беру туралы түрлі пікір","C) беруге болмайтын сыйлық түріне сараптама жасалған","D) сыйлық беру мәдениетін салыстыру","E) сыйлықтарға қатысты түсініктеме берілген"],
+    answer:3,
+    explanation:"Жауап кілті бойынша дұрыс жауап — D."
+  },
+  {
+    q:"26. Берілген мәтінге сәйкес тақырыпты таңдаңыз.",
+    options:["A) Сыйлық беру мәдениеті","B) Сағат сыйлауға болмайды","C) Сыйлық таңдау","D) Сыйлауға болмайтын сыйлықтар","E) Сыйлықтар"],
+    answer:0,
+    explanation:"Жауап кілті бойынша дұрыс жауап — A."
+  },
+  {
+    q:"27. «Ел аузында» сөзінің мәтіндегі мағынасын табыңыз.",
+    options:["A) қариялардың айтуынша","B) ереже бойынша","C) аңыз бойынша","D) халық арасында","E) өсиет бойынша"],
+    answer:2,
+    explanation:"Жауап кілті бойынша дұрыс жауап — C."
+  }
+];
+
+const analyticalText4Questions = [
+  {
+    q:"28. «Ерік» сөзіне мағынасы жақын сөзді табыңыз.",
+    options:["A) түйсік","B) зейін","C) ырық","D) мінез","E) сана"],
+    answer:2,
+    explanation:"Ерік сөзіне мағынасы жақын сөз — ырық. Дұрыс жауап — C."
+  },
+  {
+    q:"29. Мәтінде берілген ойды әрі қарай жалғастырыңыз. Тіл - ...",
+    options:["A) зейінді қалыптастырушы","B) психикалық құбылыс","C) негізгі құрал","D) құдіретті құрал","E) ойлау әрекетімен бірлікте"],
+    answer:4,
+    explanation:"Мәтінде тіл мен ойлау әрекеті бірлікте қарастырылған. Дұрыс жауап — E."
+  },
+  {
+    q:"30. Мәтінге сәйкес ақпаратты табыңыз.",
+    options:["A) Білім - сөйлеу әрекетін ұйымдастырушы","B) Тіл мен ойлау ұғымдары сабақтас","C) Когнитология ғылымының тарихы ертеден бастау алады","D) Психология ғылымы лингвистикалық құбылыстарды анықтайды","E) Тілдік құралдардың жасалуы екпінді жүреді"],
+    answer:1,
+    explanation:"Мәтінде тіл мен ойлау байланысы айтылған. Дұрыс жауап — B."
+  }
+];
+
+function renderQuiz(containerId, questions, namePrefix){
+  const container = document.getElementById(containerId);
+
+  questions.forEach((item, index) => {
+    let html = `<div class="question"><b>${item.q}</b>`;
+
+    if(item.image){
+      html += `<img src="${item.image}" alt="Question image" class="question-image">`;
+    }
+
+    item.options.forEach((option, optionIndex) => {
+      html += `
+        <label>
+          <input type="radio" name="${namePrefix}${index}" value="${optionIndex}">
+          ${option}
+        </label>
+      `;
+    });
+
+    html += `</div>`;
+    container.innerHTML += html;
+  });
+}
+
+renderQuiz("criticalQuiz", criticalQuestions, "critical");
+renderQuiz("analyticalIntro", analyticalIntroQuestions, "analyticalIntro");
+renderQuiz("analyticalText1", analyticalText1Questions, "analyticalText1");
+renderQuiz("analyticalText2", analyticalText2Questions, "analyticalText2");
+renderQuiz("analyticalText3", analyticalText3Questions, "analyticalText3");
+renderQuiz("analyticalText4", analyticalText4Questions, "analyticalText4");
+
+function checkGroup(questions, namePrefix){
+  let score = 0;
+  let html = "";
+
+  questions.forEach((item, index) => {
+    const selected = document.querySelector(`input[name="${namePrefix}${index}"]:checked`);
+    const userAnswer = selected ? Number(selected.value) : null;
+
+    if(userAnswer === item.answer){
+      score++;
+      html += `<p class="correct">✔ ${item.q}</p>`;
+    } else {
+      html += `<p class="wrong">✘ ${item.q}</p>`;
+    }
+
+    html += `
+      <div class="explanation">
+        <b>Дұрыс жауап:</b> ${item.options[item.answer]}<br>
+        <b>Сіздің жауабыңыз:</b> ${userAnswer !== null ? item.options[userAnswer] : "Жауап берілмеді"}<br>
+        <b>Түсіндірме:</b> ${item.explanation}
+      </div>
+    `;
+  });
+
+  return {score, html};
+}
+
+function checkAnswers(){
+  const critical = checkGroup(criticalQuestions, "critical");
+  const aIntro = checkGroup(analyticalIntroQuestions, "analyticalIntro");
+  const aText1 = checkGroup(analyticalText1Questions, "analyticalText1");
+  const aText2 = checkGroup(analyticalText2Questions, "analyticalText2");
+  const aText3 = checkGroup(analyticalText3Questions, "analyticalText3");
+  const aText4 = checkGroup(analyticalText4Questions, "analyticalText4");
+
+  const analyticalScore = aIntro.score + aText1.score + aText2.score + aText3.score + aText4.score;
+  const totalScore = critical.score + analyticalScore;
+
+  let level = "";
+  let messageKaz = "";
+  let messageRus = "";
+
+  if(totalScore <= 10){
+    level = "Бастапқы деңгей / Начальный уровень";
+    messageKaz = "Сізге әлі көбірек дайындық керек.";
+    messageRus = "Вам нужно ещё больше подготовиться.";
+  } else if(totalScore <= 22){
+    level = "Орташа деңгей / Средний уровень";
+    messageKaz = "Негізгі түсінік бар, бірақ қосымша практика қажет.";
+    messageRus = "Базовое понимание есть, но нужна дополнительная практика.";
+  } else {
+    level = "Жақсы дайындық / Хорошая готовность";
+    messageKaz = "Нәтижеңіз жақсы. Енді тұрақты қайталау маңызды.";
+    messageRus = "Результат хороший. Теперь важно регулярно повторять.";
+  }
+
+  const finalBlock = `
+    <div class="result-box">
+      <h2>Жалпы нәтижеңіз: ${totalScore}/30</h2>
+      <h2>${level}</h2>
+      <p>${messageKaz}</p>
+      <p>${messageRus}</p>
+
+      <div class="score-grid">
+        <div class="score-item">Сыни ойлау: ${critical.score}/15</div>
+        <div class="score-item">Аналитикалық ойлау: ${analyticalScore}/15</div>
+      </div>
+    </div>
+  `;
+
+  document.getElementById("results").innerHTML = finalBlock;
+
+  document.getElementById("criticalResults").innerHTML =
+    "<h2>Сыни ойлау жауаптары</h2>" + critical.html;
+
+  document.getElementById("analyticalResults").innerHTML =
+    "<h2>Аналитикалық ойлау жауаптары</h2>" +
+    aIntro.html + aText1.html + aText2.html + aText3.html + aText4.html;
+
+  document.getElementById("results").scrollIntoView({
+    behavior:"smooth"
+  });
+}
+</script>
+
+</body>
+</html>
