@@ -1,643 +1,418 @@
 <!DOCTYPE html>
 <html lang="kk">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Вариант 2 — Магистратура КТ</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Вариант 2 — Магистратура КТ</title>
 
-  <style>
-    *{box-sizing:border-box;}
-    html{scroll-behavior:smooth;}
-
-    body{
-      margin:0;
-      font-family:Arial,sans-serif;
-      background:linear-gradient(135deg,#eef7ff,#f6fff4);
-      color:#1b1b1b;
-    }
-
-    .wrapper{
-      max-width:950px;
-      margin:auto;
-      padding:16px;
-    }
-
-    .hero{
-      background:linear-gradient(135deg,#1565c0,#43a047);
-      color:white;
-      padding:28px 20px;
-      border-radius:22px;
-      text-align:center;
-      margin-bottom:18px;
-      box-shadow:0 8px 20px rgba(0,0,0,0.15);
-    }
-
-    .hero h1{
-      margin:0 0 10px;
-      font-size:30px;
-      line-height:1.2;
-    }
-
-    .hero p{
-      margin:8px 0;
-      font-size:16px;
-      line-height:1.5;
-    }
-
-    .badge{
-      display:inline-block;
-      background:white;
-      color:#1565c0;
-      padding:8px 14px;
-      border-radius:999px;
-      font-weight:bold;
-      margin-top:12px;
-      font-size:14px;
-    }
-
-    .nav-buttons{
-      display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:10px;
-      margin-bottom:18px;
-    }
-
-    .nav-buttons a{
-      text-align:center;
-      text-decoration:none;
-      background:white;
-      color:#1565c0;
-      padding:14px;
-      border-radius:14px;
-      font-weight:bold;
-      box-shadow:0 5px 15px rgba(0,0,0,0.08);
-      border:1px solid #dbeafe;
-    }
-
-    .card{
-      background:white;
-      padding:22px;
-      border-radius:20px;
-      margin-bottom:18px;
-      box-shadow:0 6px 18px rgba(0,0,0,0.08);
-    }
-
-    .card h2{
-      margin-top:0;
-      color:#1565c0;
-      font-size:22px;
-    }
-
-    .section-title{
-      background:#e3f2fd;
-      border-left:5px solid #1565c0;
-      padding:14px;
-      border-radius:14px;
-      margin-bottom:18px;
-    }
-
-    .question{
-      background:#f7f7f7;
-      padding:18px;
-      border-radius:16px;
-      margin-bottom:16px;
-      border-left:5px solid #43a047;
-    }
-
-    .question b{
-      display:block;
-      margin-bottom:12px;
-      font-size:16px;
-      line-height:1.5;
-    }
-
-    label{
-      display:block;
-      background:white;
-      padding:12px;
-      border-radius:12px;
-      margin:8px 0;
-      border:1px solid #ddd;
-      cursor:pointer;
-      line-height:1.4;
-    }
-
-    label:hover{
-      background:#e8f5e9;
-    }
-
-    input[type="radio"]{
-      margin-right:8px;
-      transform:scale(1.1);
-    }
-
-    .question-image{
-      width:100%;
-      max-width:460px;
-      display:block;
-      margin:12px auto 16px;
-      border-radius:14px;
-      border:1px solid #ddd;
-      box-shadow:0 4px 12px rgba(0,0,0,0.08);
-    }
-
-    .text-box{
-      background:#fafafa;
-      padding:16px;
-      border-radius:16px;
-      line-height:1.6;
-      margin-bottom:18px;
-      border:1px solid #ddd;
-      font-size:15px;
-    }
-
-    button{
-      width:100%;
-      background:#1565c0;
-      color:white;
-      border:none;
-      padding:16px;
-      border-radius:14px;
-      cursor:pointer;
-      font-size:18px;
-      font-weight:bold;
-      margin-top:10px;
-    }
-
-    button:hover{
-      background:#0d47a1;
-    }
-
-    .result-box{
-      background:#e8f5e9;
-      border:2px solid #43a047;
-      padding:22px;
-      border-radius:20px;
-      text-align:center;
-      margin-bottom:18px;
-    }
-
-    .result-box h2{
-      margin-top:0;
-      color:#2e7d32;
-    }
-
-    .score-grid{
-      display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:10px;
-      margin-top:15px;
-    }
-
-    .score-item{
-      background:white;
-      padding:12px;
-      border-radius:14px;
-      font-weight:bold;
-    }
-
-    .correct{
-      color:green;
-      font-weight:bold;
-    }
-
-    .wrong{
-      color:red;
-      font-weight:bold;
-    }
-
-    .explanation{
-      background:#f1f8e9;
-      padding:12px;
-      margin:10px 0 18px;
-      border-radius:12px;
-      line-height:1.5;
-    }
-
-    .footer{
-      text-align:center;
-      color:#555;
-      font-size:14px;
-      padding:20px 0;
-    }
-
-    @media(max-width:600px){
-      .wrapper{padding:12px;}
-      .hero{padding:24px 16px;border-radius:18px;}
-      .hero h1{font-size:24px;}
-      .hero p{font-size:15px;}
-      .nav-buttons{grid-template-columns:1fr;}
-      .card{padding:16px;border-radius:17px;}
-      .question{padding:15px;}
-      .question b{font-size:15px;}
-      label{font-size:15px;padding:11px;}
-      button{font-size:16px;padding:15px;}
-      .score-grid{grid-template-columns:1fr;}
-    }
-  </style>
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(135deg,#eef7ff,#f6fff4);color:#1b1b1b}
+.wrapper{max-width:950px;margin:auto;padding:16px}
+.hero{background:linear-gradient(135deg,#1565c0,#43a047);color:white;padding:28px 20px;border-radius:22px;text-align:center;margin-bottom:18px;box-shadow:0 8px 20px rgba(0,0,0,.15)}
+.hero h1{margin:0 0 10px;font-size:30px;line-height:1.2}
+.hero p{margin:8px 0;font-size:16px;line-height:1.5}
+.badge{display:inline-block;background:white;color:#1565c0;padding:8px 14px;border-radius:999px;font-weight:bold;margin-top:12px;font-size:14px}
+.nav-buttons{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px}
+.nav-buttons a{text-align:center;text-decoration:none;background:white;color:#1565c0;padding:14px;border-radius:14px;font-weight:bold;box-shadow:0 5px 15px rgba(0,0,0,.08);border:1px solid #dbeafe}
+.card{background:white;padding:22px;border-radius:20px;margin-bottom:18px;box-shadow:0 6px 18px rgba(0,0,0,.08)}
+.card h2{margin-top:0;color:#1565c0;font-size:22px}
+.section-title{background:#e3f2fd;border-left:5px solid #1565c0;padding:14px;border-radius:14px;margin-bottom:18px}
+.question{background:#f7f7f7;padding:18px;border-radius:16px;margin-bottom:16px;border-left:5px solid #43a047}
+.question b{display:block;margin-bottom:12px;font-size:16px;line-height:1.5}
+label{display:block;background:white;padding:12px;border-radius:12px;margin:8px 0;border:1px solid #ddd;cursor:pointer;line-height:1.4}
+label:hover{background:#e8f5e9}
+input[type="radio"]{margin-right:8px;transform:scale(1.1)}
+.question-image{width:100%;max-width:460px;display:block;margin:12px auto 16px;border-radius:14px;border:1px solid #ddd;box-shadow:0 4px 12px rgba(0,0,0,.08)}
+.text-box{background:#fafafa;padding:16px;border-radius:16px;line-height:1.6;margin-bottom:18px;border:1px solid #ddd;font-size:15px}
+audio{width:100%;margin:12px 0 18px}
+button{width:100%;background:#1565c0;color:white;border:none;padding:16px;border-radius:14px;cursor:pointer;font-size:18px;font-weight:bold;margin-top:10px}
+button:hover{background:#0d47a1}
+.result-box{background:#e8f5e9;border:2px solid #43a047;padding:22px;border-radius:20px;text-align:center;margin-bottom:18px}
+.result-box h2{margin-top:0;color:#2e7d32}
+.score-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:15px}
+.score-item{background:white;padding:12px;border-radius:14px;font-weight:bold}
+.correct{color:green;font-weight:bold}
+.wrong{color:red;font-weight:bold}
+.explanation{background:#f1f8e9;padding:12px;margin:10px 0 18px;border-radius:12px;line-height:1.5}
+.footer{text-align:center;color:#555;font-size:14px;padding:20px 0}
+@media(max-width:600px){
+.wrapper{padding:12px}.hero{padding:24px 16px;border-radius:18px}.hero h1{font-size:24px}.hero p{font-size:15px}
+.nav-buttons{grid-template-columns:1fr}.card{padding:16px;border-radius:17px}.question{padding:15px}.question b{font-size:15px}
+label{font-size:15px;padding:11px}button{font-size:16px;padding:15px}.score-grid{grid-template-columns:1fr}
+}
+</style>
 </head>
 
 <body>
-
 <div class="wrapper">
 
-  <div class="hero">
-    <h1>Вариант 2 — Магистратура КТ</h1>
-    <p>Сыни ойлау және аналитикалық ойлау бөлімі</p>
-    <span class="badge">30 сұрақ • Нәтиже бірден шығады</span>
-  </div>
+<div class="hero">
+<h1>Вариант 2 — Магистратура КТ</h1>
+<p>Сыни ойлау, аналитикалық ойлау және English бөлімі</p>
+<span class="badge">80 сұрақ • Нәтиже бірден шығады</span>
+</div>
 
-  <div class="nav-buttons">
-    <a href="#critical">Сыни ойлау</a>
-    <a href="#analytical">Аналитикалық ойлау</a>
-  </div>
+<div class="nav-buttons">
+<a href="#critical">Сыни ойлау</a>
+<a href="#analytical">Аналитикалық ойлау</a>
+<a href="#english">English</a>
+</div>
 
-  <div class="card">
-    <h2>Нұсқаулық</h2>
-    <p>Бұл тест 2 бөлімнен тұрады:</p>
-    <ul>
-      <li><b>Сыни ойлау:</b> 1–15 сұрақ</li>
-      <li><b>Аналитикалық ойлау:</b> 16–30 сұрақ</li>
-    </ul>
-    <p>Барлық сұрақтарға жауап беріп, соңында нәтижені және түсіндірмелерді көріңіз.</p>
-  </div>
+<div class="card">
+<h2>Нұсқаулық</h2>
+<p>Бұл тест 3 бөлімнен тұрады:</p>
+<ul>
+<li><b>Сыни ойлау:</b> 1–15 сұрақ</li>
+<li><b>Аналитикалық ойлау:</b> 16–30 сұрақ</li>
+<li><b>English:</b> 1–50 сұрақ</li>
+</ul>
+<p>Барлық сұрақтарға жауап беріп, соңында нәтижені және түсіндірмелерді көріңіз.</p>
+</div>
 
-  <section id="critical" class="card">
-    <div class="section-title">
-      <h2>Part 1. Сыни ойлау</h2>
-      <p>Дұрыс жауапты таңдаңыз.</p>
-    </div>
+<section id="critical" class="card">
+<div class="section-title">
+<h2>Part 1. Сыни ойлау</h2>
+<p>Дұрыс жауапты таңдаңыз.</p>
+</div>
+<div id="criticalQuiz"></div>
+<div id="criticalResults"></div>
+</section>
 
-    <div id="criticalQuiz"></div>
-    <div id="criticalResults"></div>
-  </section>
+<section id="analytical" class="card">
+<div class="section-title">
+<h2>Part 2. Аналитикалық ойлау</h2>
+<p>Мәтінді оқып, дұрыс жауапты таңдаңыз.</p>
+</div>
 
-  <section id="analytical" class="card">
-    <div class="section-title">
-      <h2>Part 2. Аналитикалық ойлау</h2>
-      <p>Мәтінді оқып, дұрыс жауапты таңдаңыз.</p>
-    </div>
+<div id="analyticalIntro"></div>
 
-    <div id="analyticalIntro"></div>
+<h2>Мәтін 1</h2>
+<div class="text-box">
+<p>Үлкен сарышұнақ тиінге ұқсайды. Бұлардың созыңқы тұрқы 14-40 см, құйрығы шағын, ұзындығы денесінің жартысына сирек жетеді, құлақтары қысқа әрі толықтай жалаң, көздері үлкен және артқы аяқтары алдыңғыларына қарағанда ұзынырақ. Жалпы түсі - сарғыш-сұр, жотасы қоңырқай тартқан, жүні жұмсақ, қалың.</p>
+<p>Қыста сарышұнақ басқа кеміргіштер сияқты жүнінің құрылымын ауыстыруға бейім. Қыста жүні жұмсақ әрі қалың болса, ал жазда керісінше сиректейді, бірақ нығаяды. Сарышұнақтарды атжалмандармен жақ сыртындағы қапшыққа азығын жасыру әдеті жақындастырады. Мекендеу түрі бойынша бұл кеміргіш отаршыл. Сарышұнақтар қыста ұйқыға кетуге бейім, бірақ кейде бұл құбылыс аңдар арасында азық жетіспегендіктен жаз мезгілінде де байқалады.</p>
+</div>
+<div id="analyticalText1"></div>
 
-    <h2>Мәтін 1</h2>
-    <div class="text-box">
-      <p>Үлкен сарышұнақ тиінге ұқсайды. Бұлардың созыңқы тұрқы 14-40 см, құйрығы шағын, ұзындығы денесінің жартысына сирек жетеді, құлақтары қысқа әрі толықтай жалаң, көздері үлкен және артқы аяқтары алдыңғыларына қарағанда ұзынырақ. Жалпы түсі - сарғыш-сұр, жотасы қоңырқай тартқан, жүні жұмсақ, қалың.</p>
-      <p>Қыста сарышұнақ басқа кеміргіштер сияқты жүнінің құрылымын ауыстыруға бейім. Қыста жүні жұмсақ әрі қалың болса, ал жазда керісінше сиректейді, бірақ нығаяды. Сарышұнақтарды атжалмандармен жақ сыртындағы қапшыққа азығын жасыру әдеті жақындастырады. Мекендеу түрі бойынша бұл кеміргіш отаршыл. Сарышұнақтар қыста ұйқыға кетуге бейім, бірақ кейде бұл құбылыс аңдар арасында азық жетіспегендіктен жаз мезгілінде де байқалады.</p>
-    </div>
-    <div id="analyticalText1"></div>
+<h2>Мәтін 2</h2>
+<div class="text-box">
+<p>Ерте замандағы Персия мен Үндістан және Греция әлемнің алғашқы астрономиялық жаңалықтарын ашқан. Грек тілінде жазған Рим Птоломейі Жер - дүниенің орталығы болып табылады және оны күн мен планеталар және жұлдыздар айналады деп сенген. Оның теориясы 16-шы ғасырға дейін жалғасқан.</p>
+<p>Алайда поляк Коперник Рим католиктерінің теориясына қарсы болып, күннің - күн жүйесінің орталығы екендігін дәлелдеген. Коперниктің теориясын кейінірек телескопты дамытқан италияндық ғалым Галилео Галилей растаған. Әрине, Астрономия жылы Галилеоның 1609 жылы ашқан жаңалықтарының 400 жылдығына арналып отыр. Ватикан билігі сол кезде үстемдік еткен дінге өзінің ғылыми жаңалығымен қарсы шыққан Галилеоны түрмеге жапқан болатын.</p>
+</div>
+<div id="analyticalText2"></div>
 
-    <h2>Мәтін 2</h2>
-    <div class="text-box">
-      <p>Ерте замандағы Персия мен Үндістан және Греция әлемнің алғашқы астрономиялық жаңалықтарын ашқан. Грек тілінде жазған Рим Птоломейі Жер - дүниенің орталығы болып табылады және оны күн мен планеталар және жұлдыздар айналады деп сенген. Оның теориясы 16-шы ғасырға дейін жалғасқан.</p>
-      <p>Алайда поляк Коперник Рим католиктерінің теориясына қарсы болып, күннің - күн жүйесінің орталығы екендігін дәлелдеген. Коперниктің теориясын кейінірек телескопты дамытқан италияндық ғалым Галилео Галилей растаған. Әрине, Астрономия жылы Галилеоның 1609 жылы ашқан жаңалықтарының 400 жылдығына арналып отыр. Ватикан билігі сол кезде үстемдік еткен дінге өзінің ғылыми жаңалығымен қарсы шыққан Галилеоны түрмеге жапқан болатын.</p>
-    </div>
-    <div id="analyticalText2"></div>
+<h2>Мәтін 3</h2>
+<div class="text-box">
+<p>Сыйлық таңдау ешқашан оңай шаруа болған емес. Жаныңызға жақын адамға тосын сый жасап, қуантқыңыз-ақ келеді. Алайда, ұната ма, ұнатпай ма? Мұндай сыйлық беру жақсы ырым ба? Осындай дау-дамайлы сыйлықтардың бірі - сағат.</p>
+<p>Ел аузында үйлену тойына тарту етілген сағат жас жұбайлар некесінің тез бұзылуына алып келеді. Бақытты адамдар сағат тақпайды деген сөздер аз айтылмайды. Сағат сыйлауға болмайды деген наным-сенім біздерге Қытайдан келген. Осы елдің тұрғындары сыйға алынған сағат - жерлеу рәсіміне шақыру деп түсінеді екен.</p>
+<p>Ырымның екінші бір себебі ежелден бері сыйлыққа өткір зат беруге болмайды деген тыйымда жатыр. Пышаққа қатысты мұндай тыйымдардан өзіңіз де хабардар боларсыз. Өткір тілді сағаттар дәл осы тыйым салынған заттардың қатарына жатады. Жорамалмен келісер болсақ, өткір заттарды сыйлау арқылы сол адаммен қарым-қатынасыңызды өз қолыңызбен қырыққан боласыз.</p>
+</div>
+<div id="analyticalText3"></div>
 
-    <h2>Мәтін 3</h2>
-    <div class="text-box">
-      <p>Сыйлық таңдау ешқашан оңай шаруа болған емес. Жаныңызға жақын адамға тосын сый жасап, қуантқыңыз-ақ келеді. Алайда, ұната ма, ұнатпай ма? Мұндай сыйлық беру жақсы ырым ба? Осындай дау-дамайлы сыйлықтардың бірі - сағат.</p>
-      <p>Ел аузында үйлену тойына тарту етілген сағат жас жұбайлар некесінің тез бұзылуына алып келеді. Бақытты адамдар сағат тақпайды деген сөздер аз айтылмайды. Сағат сыйлауға болмайды деген наным-сенім біздерге Қытайдан келген. Осы елдің тұрғындары сыйға алынған сағат - жерлеу рәсіміне шақыру деп түсінеді екен.</p>
-      <p>Ырымның екінші бір себебі ежелден бері сыйлыққа өткір зат беруге болмайды деген тыйымда жатыр. Пышаққа қатысты мұндай тыйымдардан өзіңіз де хабардар боларсыз. Өткір тілді сағаттар дәл осы тыйым салынған заттардың қатарына жатады. Жорамалмен келісер болсақ, өткір заттарды сыйлау арқылы сол адаммен қарым-қатынасыңызды өз қолыңызбен қырыққан боласыз.</p>
-    </div>
-    <div id="analyticalText3"></div>
+<h2>Мәтін 4</h2>
+<div class="text-box">
+<p>«Логика сөйлемі», «психология коммуникациясы», «психологиялық қиялдау» секілді тіркестерді қолдану негізінде Қ. Жұбановта «ойды сөзбен білдіру» амалдарын жеке-жеке түсіндіріп көрсетуді мақсат етті. С. Аманжоловта «...тіл мәселесі ойлаусыз ешбір шешілмек емес» дей келе, кез келген тілдің құрылымдық элементін, олардың бір-бірімен қарым-қатынасын адамның ойлау әрекетімен бірлікте қарастыру қажеттігін ескертті.</p>
+<p>Осындай сабақтасқан байланыстың нәтижесінде лингвистиканың бір саласы психолингвистика дүниеге келді. ХХ ғасырдың 50-60 жылдары бастау алған аталмыш сала психология ғылымының маңызды концепцияларына сүйене қалыптасты, яғни, К. Аханов көрсеткендей, «...психикалық құбылыстарды, атап айтқанда, түйсік пен қабылдау, елес пен ой, сезім мен тілек, бейімділік пен қабілет, ерік сапалары мен мінез белгілерін зерттейтін» психология лингвистикамен байланыса келе, олардың «сөйлеу процесімен» ұштасу ерекшелігін айқындауға мүмкіндік берді.</p>
+</div>
+<div id="analyticalText4"></div>
+<div id="analyticalResults"></div>
+</section>
 
-    <h2>Мәтін 4</h2>
-    <div class="text-box">
-      <p>«Логика сөйлемі», «психология коммуникациясы», «психологиялық қиялдау» секілді тіркестерді қолдану негізінде Қ. Жұбановта «ойды сөзбен білдіру» амалдарын жеке-жеке түсіндіріп көрсетуді мақсат етті. С. Аманжоловта «...тіл мәселесі ойлаусыз ешбір шешілмек емес» дей келе, кез келген тілдің құрылымдық элементін, олардың бір-бірімен қарым-қатынасын адамның ойлау әрекетімен бірлікте қарастыру қажеттігін ескертті.</p>
-      <p>Осындай сабақтасқан байланыстың нәтижесінде лингвистиканың бір саласы психолингвистика дүниеге келді. ХХ ғасырдың 50-60 жылдары бастау алған аталмыш сала психология ғылымының маңызды концепцияларына сүйене қалыптасты, яғни, К. Аханов көрсеткендей, «...психикалық құбылыстарды, атап айтқанда, түйсік пен қабылдау, елес пен ой, сезім мен тілек, бейімділік пен қабілет, ерік сапалары мен мінез белгілерін зерттейтін» психология лингвистикамен байланыса келе, олардың «сөйлеу процесімен» ұштасу ерекшелігін айқындауға мүмкіндік берді.</p>
-    </div>
-    <div id="analyticalText4"></div>
+<section id="english" class="card">
+<div class="section-title">
+<h2>Part 3. English</h2>
+<p>Дұрыс жауапты таңдаңыз.</p>
+</div>
 
-    <div id="analyticalResults"></div>
-  </section>
+<h2>Listening 1</h2>
+<audio controls controlsList="nodownload">
+<source src="TEXT%2035%20-%20АУДИО.mp3" type="audio/mpeg">
+Your browser does not support the audio element.
+</audio>
+<div id="engListening1"></div>
 
-  <div class="card">
-    <button onclick="checkAnswers()">Нәтижені көру / Показать результат</button>
-  </div>
+<h2>Listening 2</h2>
+<audio controls controlsList="nodownload">
+<source src="TEXT%2036%20-%20АУДИО.mp3" type="audio/mpeg">
+Your browser does not support the audio element.
+</audio>
+<div id="engListening2"></div>
 
-  <div id="results"></div>
+<div class="section-title">
+<h2>Lexico-Grammar Test</h2>
+<p>Дұрыс грамматикалық немесе лексикалық нұсқаны таңдаңыз.</p>
+</div>
+<div id="engGrammar"></div>
 
-  <div class="footer">
-    © Вариант 2 — Магистратура КТ
-  </div>
+<h2>Text 35. Chicago</h2>
+<div class="text-box">
+<p>Keith recently came back from a trip to Chicago, Illinois. This midwestern metropolis is found along the shore of Lake Michigan. During his visit, Keith spent a lot of time exploring the city to visit important landmarks and monuments.</p>
+<p>Keith loves baseball, and he made sure to take a visit to Wrigley Field. Not only did he take a tour of this spectacular stadium, but he also got to watch a Chicago Cubs game. In the stadium, Keith and the other fans cheered for the Cubs. Keith was happy that the Cubs won with a score of 5-4.</p>
+<p>Chicago has many historic places to visit. Keith found the Chicago Water Tower impressive as it is one of the few remaining landmarks to have survived the Great Chicago Fire of 1871. Keith also took a walk through Jackson Park, a great outdoor space that hosted the World's Fair of 1892. The park is great for a leisurely stroll, and it still features some of the original architecture and replicas of monuments that were featured in the World's Fair.</p>
+<p>During the last part of his visit, Keith managed to climb the stairs inside of the Willis Tower, a 110-story skyscraper. Despite the challenge of climbing the many flights of stairs, Keith felt that reaching the top was worth the effort. From the rooftop, Keith received a gorgeous view of the city's skyline with Lake Michigan in the background.</p>
+</div>
+<div id="engReading1"></div>
 
+<h2>Text 36. Yellowstone National Park</h2>
+<div class="text-box">
+<p>Yellowstone National Park, located in Idaho, Montana, and Wyoming, was established as the first national park in the United States. The park is a popular destination for visitors who enjoy ecological tourism as it offers forests, mountains, and abundant ecosystems to explore. Some of Yellowstone's most well-known landmarks are its geothermal hot springs and geysers, the most famous of which is named Old Faithful.</p>
+<p>Last fall, Lisa and her friends decided to take a camping trip to Yellowstone National Park. They arranged to stay at one of the park's many convenient campsites. For their camping trip, they brought their backpacks, sleeping bags, and a cooler of food and drinks. They pitched their tents immediately upon arriving to their campsite. During their trip, Lisa and her friends hiked the many trails of the park, exploring its natural surroundings. In the forest, they saw a lot of local wildlife. Lisa was surprised to see a family of grizzly bears, some gray wolves, and even bald eagles flying overhead. Outside of the woods, they admired the beauty of some of Yellowstone's natural cascades.</p>
+<p>Since Yellowstone contains many hot springs and the world's largest area of active geysers, Lisa and her friends visited many different geyser sites. They even spent an afternoon swimming in Yellowstone's Boiling River. Of all of the sites, Lisa and her friends agreed that Old Faithful was the most impressive. Lisa and her friends waited patiently for the geyser to erupt. After about 40 minutes, a stream of boiling water over 100 feet tall sprayed from the ground and up into the air. Fortunately, no one got wet!</p>
+</div>
+<div id="engReading2"></div>
+<div id="englishResults"></div>
+</section>
+
+<div class="card">
+<button onclick="checkAnswers()">Нәтижені көру / Показать результат</button>
+</div>
+
+<div id="results"></div>
+
+<div class="footer">© Вариант 2 — Магистратура КТ</div>
 </div>
 
 <script>
-const criticalQuestions = [
-  {
-    q:"1. 3x - 9 = 6 теңдеуін шешіңіз.",
-    options:["A) 1","B) 2","C) 3","D) 4","E) 5"],
-    answer:4,
-    explanation:"3x - 9 = 6 → 3x = 15 → x = 5. Дұрыс жауап — E."
-  },
-  {
-    q:"2. Аружанда музыка сақтайтын есте сақтау картасы бар. Есте сақтау картасының жады 2 GB (2000 MB). Егер 1 музыкасының жады 6 MB болса, есте сақтау картасына қанша музыка сақтауға болады?",
-    options:["A) 400","B) 500","C) 333","D) 422","E) 357"],
-    answer:2,
-    explanation:"2000 ÷ 6 = 333 толық музыка сақталады. Дұрыс жауап — C."
-  },
-  {
-    q:"3. Радиусы 2,7 см-ге тең дөңгелектің ауданын табу керек.",
-    options:["A) 10,8π см²","B) 8π см²","C) 7,29π см²","D) 8π см²","E) 5,4π см²"],
-    answer:2,
-    explanation:"S = πr² = π × 2,7² = 7,29π. Дұрыс жауап — C."
-  },
-  {
-    q:"4. Бағанды салыстырыңыз: x = 2, y = 3. A шамасы: x * y, B шамасы: y * x",
-    options:["A) Берілген мәлімет жеткіліксіз","B) А шамасы үлкен","C) Шамалар тең","D) В шамасы үлкен"],
-    answer:2,
-    explanation:"x × y = 2 × 3 = 6, y × x = 3 × 2 = 6. Шамалар тең. Дұрыс жауап — C."
-  },
-  {
-    q:"5. Жалпы ауылда сиыр саны = 6, тауық саны = 7, лақ саны = 5 болса, жалпы аяқтар саны?",
-    options:["A) 54","B) 58","C) 45","D) 52","E) 64"],
-    answer:1,
-    explanation:"Сиыр: 6*4=24, тауық: 7*2=14, лақ: 5*4=20. Барлығы: 24+14+20=58. Дұрыс жауап — B."
-  },
-  {
-    q:"6. Егер 3 < x < 5 және 4 < y < 6, онда x × y жататын аралық.",
-    options:["A) 3 < x*y < 6","B) 12 < x*y < 13","C) 3 < x*y < 11","D) 7 < x*y < 11","E) 12 < x*y < 30"],
-    answer:4,
-    explanation:"Ең кіші шегі 3*4=12, ең үлкен шегі 5*6=30. Сондықтан 12 < x*y < 30. Дұрыс жауап — E."
-  },
-  {
-    q:"7. Бес түрлі карточка берілген. Ең кіші сан қай карточкада болатынын табыңыз.",
-    options:["A) 2","B) 3","C) 4","D) 5","E) 1"],
-    answer:3,
-    explanation:"Жауап кілті бойынша ең кіші сан 5-карточкада. Дұрыс жауап — D."
-  },
-  {
-    q:"8. Анасының жасы 34-те, қызының жасы 8-де. Неше жылдан кейін анасының жасы қызының жасының екі есесіндей болады?",
-    options:["A) 34","B) 18","C) 16","D) 8","E) 42"],
-    answer:1,
-    explanation:"34+x = 2(8+x). 34+x = 16+2x. x = 18. Дұрыс жауап — B."
-  },
-  {
-    q:"9. Үш дос 400 м² еденді бояған. Талғар 35%, Бекзат 40%, ал қалғанын Ержан бояса, онда Ержан еденнің қандай ауданын бояғанын табыңыз.",
-    options:["A) 100 м²","B) 160 м²","C) 120 м²","D) 200 м²","E) 150 м²"],
-    answer:0,
-    explanation:"35%+40%=75%. Қалғаны 25%. 400-дің 25%-ы = 100 м². Дұрыс жауап — A."
-  },
-  {
-    q:"10. Сұрақ белгісінің орнындағы санды табыңыз.",
-    image:"IMG_0861.jpeg",
-    options:["A) 56","B) 63","C) 42","D) 49","E) 28"],
-    answer:0,
-    explanation:"Жауап кілті бойынша дұрыс жауап — 56. Дұрыс жауап — A."
-  },
-  {
-    q:"11. Бағанды салыстырыңыз: A шамасы: x – y, B шамасы: y – x",
-    options:["A) Берілген мәлімет жеткіліксіз","B) А шамасы үлкен","C) Шамалар тең","D) В шамасы үлкен"],
-    answer:0,
-    explanation:"x пен y туралы нақты мәлімет жоқ. Сондықтан салыстыруға мәлімет жеткіліксіз. Дұрыс жауап — A."
-  },
-  {
-    q:"12. 50 + (5 * 8) – 10 = есеп мәнінің 20% пайызы.",
-    options:["A) 12","B) 14","C) 17","D) 16","E) 13"],
-    answer:3,
-    explanation:"50 + 40 - 10 = 80. 80-нің 20%-ы = 16. Дұрыс жауап — D."
-  },
-  {
-    q:"13. x, y, z мәндерін табыңыз: x + 2y + 5z = -9; x - y + 3z = 2; 3x - 6y - z = 25",
-    options:["A) x = 3, y = -3, z = -1","B) x = 2, y = -3, z = -1","C) x = 2, y = 3, z = 1","D) x = 2, y = 2, z = 5","E) x = 0, y = 3, z = 1"],
-    answer:1,
-    explanation:"Жүйені шешкенде x=2, y=-3, z=-1 шығады. Дұрыс жауап — B."
-  },
-  {
-    q:"14. Диаграммада 11-сынып оқушыларының сандық құрамы көрсетілген. Мектептегі барлық 11-сынып оқушыларының саны 200 болса, 11 «А» сыныптарында барлығы неше оқушы бар екенін табыңыз.",
-    image:"IMG_0860.jpeg",
-    options:["A) 50","B) 60","C) 70","D) 80","E) 90"],
-    answer:1,
-    explanation:"Жауап кілті бойынша 11 «А» сыныптарында 60 оқушы. Дұрыс жауап — B."
-  },
-  {
-    q:"15. Қабырғасы 15 дм-ге тең квадраттың ауданын есептеңіз?",
-    options:["A) 225 дм²","B) 215 дм²","C) 245 дм²","D) 255 дм²","E) 265 дм²"],
-    answer:0,
-    explanation:"S = a² = 15² = 225 дм². Дұрыс жауап — A."
-  }
+const criticalQuestions=[
+{q:"1. 3x - 9 = 6 теңдеуін шешіңіз.",options:["A) 1","B) 2","C) 3","D) 4","E) 5"],answer:4,explanation:"3x - 9 = 6 → 3x = 15 → x = 5. Дұрыс жауап — E."},
+{q:"2. Аружанда музыка сақтайтын есте сақтау картасы бар. Есте сақтау картасының жады 2 GB (2000 MB). Егер 1 музыкасының жады 6 MB болса, есте сақтау картасына қанша музыка сақтауға болады?",options:["A) 400","B) 500","C) 333","D) 422","E) 357"],answer:2,explanation:"2000 ÷ 6 = 333 толық музыка сақталады. Дұрыс жауап — C."},
+{q:"3. Радиусы 2,7 см-ге тең дөңгелектің ауданын табу керек.",options:["A) 10,8π см²","B) 8π см²","C) 7,29π см²","D) 8π см²","E) 5,4π см²"],answer:2,explanation:"S = πr² = π * 2,7² = 7,29π. Дұрыс жауап — C."},
+{q:"4. Бағанды салыстырыңыз: x = 2, y = 3. A шамасы: x * y, B шамасы: y * x",options:["A) Берілген мәлімет жеткіліксіз","B) А шамасы үлкен","C) Шамалар тең","D) В шамасы үлкен"],answer:2,explanation:"x * y = 2 * 3 = 6, y * x = 3 * 2 = 6. Шамалар тең. Дұрыс жауап — C."},
+{q:"5. Жалпы ауылда сиыр саны = 6, тауық саны = 7, лақ саны = 5 болса, жалпы аяқтар саны?",options:["A) 54","B) 58","C) 45","D) 52","E) 64"],answer:1,explanation:"Сиыр: 6 * 4 = 24, тауық: 7 * 2 = 14, лақ: 5 * 4 = 20. Барлығы: 24 + 14 + 20 = 58. Дұрыс жауап — B."},
+{q:"6. Егер 3 < x < 5 және 4 < y < 6, онда x * y жататын аралық.",options:["A) 3 < x * y < 6","B) 12 < x * y < 13","C) 3 < x * y < 11","D) 7 < x * y < 11","E) 12 < x * y < 30"],answer:4,explanation:"Ең кіші шегі 3 * 4 = 12, ең үлкен шегі 5 * 6 = 30. Сондықтан 12 < x * y < 30. Дұрыс жауап — E."},
+{q:"7. Бес түрлі карточка берілген. Ең кіші сан қай карточкада болатынын табыңыз.",options:["A) 2","B) 3","C) 4","D) 5","E) 1"],answer:3,explanation:"Жауап кілті бойынша ең кіші сан 5-карточкада. Дұрыс жауап — D."},
+{q:"8. Анасының жасы 34-те, қызының жасы 8-де. Неше жылдан кейін анасының жасы қызының жасының екі есесіндей болады?",options:["A) 34","B) 18","C) 16","D) 8","E) 42"],answer:1,explanation:"34+x = 2(8+x). 34+x = 16+2x. x = 18. Дұрыс жауап — B."},
+{q:"9. Үш дос 400 м² еденді бояған. Талғар 35%, Бекзат 40%, ал қалғанын Ержан бояса, онда Ержан еденнің қандай ауданын бояғанын табыңыз.",options:["A) 100 м²","B) 160 м²","C) 120 м²","D) 200 м²","E) 150 м²"],answer:0,explanation:"35% + 40% = 75%. Қалғаны 25%. 400-дің 25%-ы = 100 м². Дұрыс жауап — A."},
+{q:"10. Сұрақ белгісінің орнындағы санды табыңыз.",image:"IMG_0861.jpeg",options:["A) 56","B) 63","C) 42","D) 49","E) 28"],answer:0,explanation:"Жауап кілті бойынша дұрыс жауап — 56. Дұрыс жауап — A."},
+{q:"11. Бағанды салыстырыңыз: A шамасы: x – y, B шамасы: y – x",options:["A) Берілген мәлімет жеткіліксіз","B) А шамасы үлкен","C) Шамалар тең","D) В шамасы үлкен"],answer:0,explanation:"x пен y туралы нақты мәлімет жоқ. Сондықтан салыстыруға мәлімет жеткіліксіз. Дұрыс жауап — A."},
+{q:"12. 50 + (5 * 8) - 10 = есеп мәнінің 20% пайызы.",options:["A) 12","B) 14","C) 17","D) 16","E) 13"],answer:3,explanation:"50 + 40 - 10 = 80. 80-нің 20%-ы = 16. Дұрыс жауап — D."},
+{q:"13. x, y, z мәндерін табыңыз: x + 2y + 5z = -9; x - y + 3z = 2; 3x - 6y - z = 25",options:["A) x = 3, y = -3, z = -1","B) x = 2, y = -3, z = -1","C) x = 2, y = 3, z = 1","D) x = 2, y = 2, z = 5","E) x = 0, y = 3, z = 1"],answer:1,explanation:"Жүйені шешкенде x=2, y=-3, z=-1 шығады. Дұрыс жауап — B."},
+{q:"14. Диаграммада 11-сынып оқушыларының сандық құрамы көрсетілген. Мектептегі барлық 11-сынып оқушыларының саны 200 болса, 11 «А» сыныптарында барлығы неше оқушы бар екенін табыңыз.",image:"IMG_0860.jpeg",options:["A) 50","B) 60","C) 70","D) 80","E) 90"],answer:1,explanation:"Жауап кілті бойынша 11 «А» сыныптарында 60 оқушы. Дұрыс жауап — B."},
+{q:"15. Қабырғасы 15 дм-ге тең квадраттың ауданын есептеңіз?",options:["A) 225 дм²","B) 215 дм²","C) 245 дм²","D) 255 дм²","E) 265 дм²"],answer:0,explanation:"S = a² = 15² = 225 дм². Дұрыс жауап — A."}
 ];
 
-const analyticalIntroQuestions = [
-  {
-    q:"16. Шетелге саяхатқа шыққанда медициналық сақтандыру полисін […] керек.",
-    options:["A) тіркету","B) рәсімдеу","C) алып шығу","D) көрсету","E) әзірлеу"],
-    answer:2,
-    explanation:"Шетелге саяхатқа шыққанда сақтандыру полисін өзіңізбен бірге алып шығу керек. Дұрыс жауап — C."
-  },
-  {
-    q:"17. Көп нүкте орнына сәйкес сөз жазыңыз. Нұрсұлтан Назарбаев: « […] «туған жерге туынды тік» деп бекер айтпаған».",
-    options:["A) Қазақ","B) Адамдар","C) Жамағат","D) Халық","E) Ел"],
-    answer:0,
-    explanation:"Тұрақты тіркеске сай: «Қазақ туған жерге туыңды тік деп бекер айтпаған». Дұрыс жауап — A."
-  },
-  {
-    q:"18. Мәтіндегі бос орынды толтырыңыз. Кит – ең үлкен хайуан. Ол […] өмір сүреді.",
-    options:["A) көлде","B) су қоймасында","C) өзенде","D) мұхитта","E) теңізде"],
-    answer:3,
-    explanation:"Кит мұхитта өмір сүреді. Дұрыс жауап — D."
-  }
+const analyticalIntroQuestions=[
+{q:"16. Шетелге саяхатқа шыққанда медициналық сақтандыру полисін […] керек.",options:["A) тіркету","B) рәсімдеу","C) алып шығу","D) көрсету","E) әзірлеу"],answer:2,explanation:"Шетелге саяхатқа шыққанда сақтандыру полисін өзіңізбен бірге алып шығу керек. Дұрыс жауап — C."},
+{q:"17. Көп нүкте орнына сәйкес сөз жазыңыз. Нұрсұлтан Назарбаев: « […] «туған жерге туынды тік» деп бекер айтпаған».",options:["A) Қазақ","B) Адамдар","C) Жамағат","D) Халық","E) Ел"],answer:0,explanation:"Тұрақты тіркеске сай: «Қазақ туған жерге туыңды тік деп бекер айтпаған». Дұрыс жауап — A."},
+{q:"18. Мәтіндегі бос орынды толтырыңыз. Кит – ең үлкен хайуан. Ол […] өмір сүреді.",options:["A) көлде","B) су қоймасында","C) өзенде","D) мұхитта","E) теңізде"],answer:3,explanation:"Кит мұхитта өмір сүреді. Дұрыс жауап — D."}
 ];
 
-const analyticalText1Questions = [
-  {
-    q:"19. «Отаршыл» сөзіне мағынасы жақын сөзді табыңыз.",
-    options:["A) көшу","B) тартып алу","C) пайдалану","D) уақытша келу","E) орын ауыстыру"],
-    answer:1,
-    explanation:"Жауап кілті бойынша дұрыс жауап — B."
-  },
-  {
-    q:"20. Берілген мәтінге сәйкес тақырыпты таңдаңыз.",
-    options:["A) Сарышұнақтардың ерекшелігі","B) Сарышұнақтардың эволюциясы","C) Сарышұнақтардың мекендейтін ортасы","D) Сарышұнақ сипаты","E) Сарышұнақтардың қоректенуі"],
-    answer:3,
-    explanation:"Мәтінде сарышұнақтың сыртқы сипаты мен тіршілігі сипатталған. Дұрыс жауап — D."
-  },
-  {
-    q:"21. Берілген мәтіннің мақсатын анықтаңыз.",
-    options:["A) Сарышұнақ тіршілігін зерттеу","B) Сарышұнақ тіршілігін салыстыру","C) Сарышұнақтардың әдетін көрсету","D) Сарышұнақ тіршілігін сипаттау","E) Сарышұнақ тіршілігін қорыту"],
-    answer:3,
-    explanation:"Мәтіннің мақсаты — сарышұнақ тіршілігін сипаттау. Дұрыс жауап — D."
-  }
+const analyticalText1Questions=[
+{q:"19. «Отаршыл» сөзіне мағынасы жақын сөзді табыңыз.",options:["A) көшу","B) тартып алу","C) пайдалану","D) уақытша келу","E) орын ауыстыру"],answer:1,explanation:"Жауап кілті бойынша дұрыс жауап — B."},
+{q:"20. Берілген мәтінге сәйкес тақырыпты таңдаңыз.",options:["A) Сарышұнақтардың ерекшелігі","B) Сарышұнақтардың эволюциясы","C) Сарышұнақтардың мекендейтін ортасы","D) Сарышұнақ сипаты","E) Сарышұнақтардың қоректенуі"],answer:3,explanation:"Мәтінде сарышұнақтың сыртқы сипаты мен тіршілігі сипатталған. Дұрыс жауап — D."},
+{q:"21. Берілген мәтіннің мақсатын анықтаңыз.",options:["A) Сарышұнақ тіршілігін зерттеу","B) Сарышұнақ тіршілігін салыстыру","C) Сарышұнақтардың әдетін көрсету","D) Сарышұнақ тіршілігін сипаттау","E) Сарышұнақ тіршілігін қорыту"],answer:3,explanation:"Мәтіннің мақсаты — сарышұнақ тіршілігін сипаттау. Дұрыс жауап — D."}
 ];
 
-const analyticalText2Questions = [
-  {
-    q:"22. Берілген мәтіннің мақсатын анықтаңыз.",
-    options:["A) Ғылыми жаңалықтар туралы ақпарат беру","B) Ғылыми жаңалықтарды салыстыру","C) Жаңалықтардың ғылымилығын ашу","D) Жаңалықтардың шынайылығын зерттеу","E) Жаңалықтарды сараптау-талдау"],
-    answer:1,
-    explanation:"Жауап кілті бойынша дұрыс жауап — B."
-  },
-  {
-    q:"23. Берілген мәтінге сәйкес тақырыпты таңдаңыз.",
-    options:["A) Ғалымдар ойлары","B) Ғалымдар пікірі","C) Ғалымдар еңбегі","D) Ғалымдар зерттеулері","E) Ғалымдар жаңалығы"],
-    answer:0,
-    explanation:"Жауап кілті бойынша дұрыс жауап — A."
-  },
-  {
-    q:"24. «Дәлелдеген» сөзіне мағынасы жақын сөзді табыңыз.",
-    options:["A) жаңалық ретінде ашқан","B) теріске шығарған","C) пікір білдірген","D) зерттеуді жалғастырған","E) ғылымға еңбегі сіңген"],
-    answer:0,
-    explanation:"Берілген жауаптар ішінде мағынасы ең жақыны — жаңалық ретінде ашқан. Дұрыс жауап — A."
-  }
+const analyticalText2Questions=[
+{q:"22. Берілген мәтіннің мақсатын анықтаңыз.",options:["A) Ғылыми жаңалықтар туралы ақпарат беру","B) Ғылыми жаңалықтарды салыстыру","C) Жаңалықтардың ғылымилығын ашу","D) Жаңалықтардың шынайылығын зерттеу","E) Жаңалықтарды сараптау-талдау"],answer:1,explanation:"Жауап кілті бойынша дұрыс жауап — B."},
+{q:"23. Берілген мәтінге сәйкес тақырыпты таңдаңыз.",options:["A) Ғалымдар ойлары","B) Ғалымдар пікірі","C) Ғалымдар еңбегі","D) Ғалымдар зерттеулері","E) Ғалымдар жаңалығы"],answer:0,explanation:"Жауап кілті бойынша дұрыс жауап — A."},
+{q:"24. «Дәлелдеген» сөзіне мағынасы жақын сөзді табыңыз.",options:["A) жаңалық ретінде ашқан","B) теріске шығарған","C) пікір білдірген","D) зерттеуді жалғастырған","E) ғылымға еңбегі сіңген"],answer:0,explanation:"Берілген жауаптар ішінде мағынасы ең жақыны — жаңалық ретінде ашқан. Дұрыс жауап — A."}
 ];
 
-const analyticalText3Questions = [
-  {
-    q:"25. Берілген мәтіннің мақсатын анықтаңыз.",
-    options:["A) сыйлауға болатын сыйлықтарға талдау жүргізген","B) сыйлық беру туралы түрлі пікір","C) беруге болмайтын сыйлық түріне сараптама жасалған","D) сыйлық беру мәдениетін салыстыру","E) сыйлықтарға қатысты түсініктеме берілген"],
-    answer:3,
-    explanation:"Жауап кілті бойынша дұрыс жауап — D."
-  },
-  {
-    q:"26. Берілген мәтінге сәйкес тақырыпты таңдаңыз.",
-    options:["A) Сыйлық беру мәдениеті","B) Сағат сыйлауға болмайды","C) Сыйлық таңдау","D) Сыйлауға болмайтын сыйлықтар","E) Сыйлықтар"],
-    answer:0,
-    explanation:"Жауап кілті бойынша дұрыс жауап — A."
-  },
-  {
-    q:"27. «Ел аузында» сөзінің мәтіндегі мағынасын табыңыз.",
-    options:["A) қариялардың айтуынша","B) ереже бойынша","C) аңыз бойынша","D) халық арасында","E) өсиет бойынша"],
-    answer:2,
-    explanation:"Жауап кілті бойынша дұрыс жауап — C."
-  }
+const analyticalText3Questions=[
+{q:"25. Берілген мәтіннің мақсатын анықтаңыз.",options:["A) сыйлауға болатын сыйлықтарға талдау жүргізген","B) сыйлық беру туралы түрлі пікір","C) беруге болмайтын сыйлық түріне сараптама жасалған","D) сыйлық беру мәдениетін салыстыру","E) сыйлықтарға қатысты түсініктеме берілген"],answer:3,explanation:"Жауап кілті бойынша дұрыс жауап — D."},
+{q:"26. Берілген мәтінге сәйкес тақырыпты таңдаңыз.",options:["A) Сыйлық беру мәдениеті","B) Сағат сыйлауға болмайды","C) Сыйлық таңдау","D) Сыйлауға болмайтын сыйлықтар","E) Сыйлықтар"],answer:0,explanation:"Жауап кілті бойынша дұрыс жауап — A."},
+{q:"27. «Ел аузында» сөзінің мәтіндегі мағынасын табыңыз.",options:["A) қариялардың айтуынша","B) ереже бойынша","C) аңыз бойынша","D) халық арасында","E) өсиет бойынша"],answer:2,explanation:"Жауап кілті бойынша дұрыс жауап — C."}
 ];
 
-const analyticalText4Questions = [
-  {
-    q:"28. «Ерік» сөзіне мағынасы жақын сөзді табыңыз.",
-    options:["A) түйсік","B) зейін","C) ырық","D) мінез","E) сана"],
-    answer:2,
-    explanation:"Ерік сөзіне мағынасы жақын сөз — ырық. Дұрыс жауап — C."
-  },
-  {
-    q:"29. Мәтінде берілген ойды әрі қарай жалғастырыңыз. Тіл - ...",
-    options:["A) зейінді қалыптастырушы","B) психикалық құбылыс","C) негізгі құрал","D) құдіретті құрал","E) ойлау әрекетімен бірлікте"],
-    answer:4,
-    explanation:"Мәтінде тіл мен ойлау әрекеті бірлікте қарастырылған. Дұрыс жауап — E."
-  },
-  {
-    q:"30. Мәтінге сәйкес ақпаратты табыңыз.",
-    options:["A) Білім - сөйлеу әрекетін ұйымдастырушы","B) Тіл мен ойлау ұғымдары сабақтас","C) Когнитология ғылымының тарихы ертеден бастау алады","D) Психология ғылымы лингвистикалық құбылыстарды анықтайды","E) Тілдік құралдардың жасалуы екпінді жүреді"],
-    answer:1,
-    explanation:"Мәтінде тіл мен ойлау байланысы айтылған. Дұрыс жауап — B."
-  }
+const analyticalText4Questions=[
+{q:"28. «Ерік» сөзіне мағынасы жақын сөзді табыңыз.",options:["A) түйсік","B) зейін","C) ырық","D) мінез","E) сана"],answer:2,explanation:"Ерік сөзіне мағынасы жақын сөз — ырық. Дұрыс жауап — C."},
+{q:"29. Мәтінде берілген ойды әрі қарай жалғастырыңыз. Тіл - ...",options:["A) зейінді қалыптастырушы","B) психикалық құбылыс","C) негізгі құрал","D) құдіретті құрал","E) ойлау әрекетімен бірлікте"],answer:4,explanation:"Мәтінде тіл мен ойлау әрекеті бірлікте қарастырылған. Дұрыс жауап — E."},
+{q:"30. Мәтінге сәйкес ақпаратты табыңыз.",options:["A) Білім - сөйлеу әрекетін ұйымдастырушы","B) Тіл мен ойлау ұғымдары сабақтас","C) Когнитология ғылымының тарихы ертеден бастау алады","D) Психология ғылымы лингвистикалық құбылыстарды анықтайды","E) Тілдік құралдардың жасалуы екпінді жүреді"],answer:1,explanation:"Мәтінде тіл мен ойлау байланысы айтылған. Дұрыс жауап — B."}
 ];
 
-function renderQuiz(containerId, questions, namePrefix){
-  const container = document.getElementById(containerId);
+const englishQuestions=[
+{section:"Listening",part:"engListening1",q:"1. The employee studied ____.",options:["A) financing","B) accounting","C) supervising","D) interpreting"],answer:1,explanation:"Аудиода қызметкердің accounting, яғни бухгалтерия саласын оқығаны айтылады. Сондықтан дұрыс жауап — B) accounting."},
+{section:"Listening",part:"engListening1",q:"2. The employee enjoys ____.",options:["A) reading and training","B) bicycling and running","C) reading and running","D) bicycling and reading"],answer:3,explanation:"Аудиода оның бос уақытында bicycling және reading ұнататыны айтылады. Сондықтан дұрыс жауап — D."},
+{section:"Listening",part:"engListening1",q:"3. The employee's profession is ____.",options:["A) interpreting","B) supervising","C) accounting","D) financing"],answer:2,explanation:"Мәтін қызметкердің accounting firm-де жұмыс істегенін және accounting саласына қатысты екенін көрсетеді. Сондықтан мамандығы — accounting."},
+{section:"Listening",part:"engListening1",q:"4. The employee has always been a great ____.",options:["A) trainer","B) individual player","C) team player","D) supervisor"],answer:2,explanation:"Аудиода қызметкер өзін good/great team player ретінде сипаттайды. Сондықтан дұрыс жауап — C) team player."},
+{section:"Listening",part:"engListening1",q:"5. The employee has worked at an accounting firm for ____.",options:["A) four years","B) two years","C) one year","D) three years"],answer:1,explanation:"Аудио бойынша ол accounting firm-де two years жұмыс істеген. Сондықтан дұрыс жауап — B."},
+{section:"Listening",part:"engListening1",q:"6. The employee wants to partake in the growth and success of ____ works for.",options:["A) an accounting firm","B) schedule","C) organization","D) strength"],answer:2,explanation:"Мұнда сөйлемнің мағынасы: өзі жұмыс істейтін organization-ның өсуі мен жетістігіне үлес қосқысы келеді. Сондықтан дұрыс жауап — C."},
+{section:"Listening",part:"engListening1",q:"7. The employee is from ____.",options:["A) Almaty","B) Karaganda","C) Astana","D) New York"],answer:0,explanation:"Аудиода қызметкердің Almaty қаласынан екені айтылады. Сондықтан дұрыс жауап — A."},
+{section:"Listening",part:"engListening1",q:"8. The employee puts the aim to find ____ in a short time.",options:["A) a position","B) a job","C) a place","D) a profession"],answer:0,explanation:"Аудиода қысқа уақытта position табуды мақсат ететіні айтылады. Сондықтан дұрыс жауап — A) a position."},
 
-  questions.forEach((item, index) => {
-    let html = `<div class="question"><b>${item.q}</b>`;
+{section:"Listening",part:"engListening2",q:"9. “Felis Sylvestris” literally means “cat of the ____”.",options:["A) home","B) wild","C) woods","D) street"],answer:2,explanation:"Felis Sylvestris сөзінің тура мағынасы “cat of the woods” деп беріледі. Сондықтан дұрыс жауап — C) woods."},
+{section:"Listening",part:"engListening2",q:"10. Archeologists found a jawbone in ____.",options:["A) 1986","B) 1985","C) 1984","D) 1983"],answer:3,explanation:"Аудио бойынша археологтар jawbone-ды 1983 жылы тапқан. Сондықтан дұрыс жауап — D."},
+{section:"Listening",part:"engListening2",q:"11. ____ is a progenitor of all domestic cats.",options:["A) Middle Western wildcat","B) Northern wildcat","C) Southern wildcat","D) Middle Eastern wildcat"],answer:3,explanation:"Мәтінде барлық үй мысықтарының арғы тегі Middle Eastern wildcat екені айтылады. Сондықтан дұрыс жауап — D."},
+{section:"Listening",part:"engListening2",q:"12. The research journal Science published the study ____.",options:["A) in 2008","B) in 2004","C) in 2007","D) in 1983"],answer:2,explanation:"Аудио бойынша зерттеу Science журналында 2007 жылы жарияланған. Сондықтан дұрыс жауап — C."},
+{section:"Listening",part:"engListening2",q:"13. The text says ____ could not give exact answer about the issue.",options:["A) students","B) teachers","C) cat instructors","D) archaeologists"],answer:3,explanation:"Мәтінде бұл мәселе бойынша нақты жауапты archaeologists бере алмағаны айтылады. Сондықтан дұрыс жауап — D."},
+{section:"Listening",part:"engListening2",q:"14. “Felis Sylvestris” is the Latin name of the ____ cat.",options:["A) city","B) domesticated","C) home","D) wild"],answer:3,explanation:"Felis Sylvestris — wild cat атауының латынша нұсқасы. Сондықтан дұрыс жауап — D."},
+{section:"Listening",part:"engListening2",q:"15. A cat's skeleton was found in the ____.",options:["A) bucket","B) box","C) basket","D) grave"],answer:3,explanation:"Аудиода cat's skeleton grave ішінен табылғаны айтылады. Сондықтан дұрыс жауап — D."},
+{section:"Listening",part:"engListening2",q:"16. The cat-domestication puzzle is based on ____.",options:["A) genetic analyses","B) hypothesis","C) figures","D) feasible theory"],answer:0,explanation:"Мысықтың қолға үйретілуіне қатысты қорытынды genetic analyses негізінде жасалған. Сондықтан дұрыс жауап — A."},
 
-    if(item.image){
-      html += `<img src="${item.image}" alt="Question image" class="question-image">`;
-    }
+{section:"Grammar",part:"engGrammar",q:"17. Since the day he ____ ill he ____ a lot of reading.",options:["A) was / has done","B) was / had done","C) is / has done","D) is / has been done"],answer:0,explanation:"Since the day he was ill — өткен уақыттан басталған жағдай. Негізгі әрекет қазіргі уақытқа дейін жалғасқандықтан Present Perfect қолданылады: has done. Дұрыс жауап — A."},
+{section:"Grammar",part:"engGrammar",q:"18. I usually ____ television in the evening.",options:["A) watch","B) watches","C) am watch","D) watching"],answer:0,explanation:"Usually сөзі Present Simple шақты қажет етеді. I бастауышымен етістік бастапқы формада қолданылады: I watch. Дұрыс жауап — A."},
+{section:"Grammar",part:"engGrammar",q:"19. We can’t afford ____ on holiday this year.",options:["A) to go","B) that we gone","C) being gone","D) going"],answer:0,explanation:"Afford етістігінен кейін infinitive қолданылады: afford to do something. Сондықтан дұрыс жауап — A) to go."},
+{section:"Grammar",part:"engGrammar",q:"20. Henry ____ had ____ wives.",options:["A) Eights / sixth","B) the Eighth / six","C) Eight / six","D) Eight / sixth"],answer:1,explanation:"Патшаның аты ordinal number арқылы айтылады: Henry the Eighth. Әйелдерінің саны cardinal number: six wives. Дұрыс жауап — B."},
+{section:"Grammar",part:"engGrammar",q:"21. Enjoy your holiday! I hope you will be there when ____.",options:["A) a good weather","B) the weather is good","C) there is some good weather","D) in any good weather"],answer:1,explanation:"Weather саналмайтын зат есім, “a good weather” болмайды. Дұрыс әрі табиғи сөйлем: when the weather is good. Жауап — B."},
+{section:"Grammar",part:"engGrammar",q:"22. Aim came to the party but she didn’t stay very long. She ____ leave early.",options:["A) has to","B) had to","C) could","D) must"],answer:1,explanation:"Сөйлем өткен шақта: came, didn’t stay. Сондықтан міндеттілік те өткен шақта беріледі: had to leave early. Дұрыс жауап — B."},
+{section:"Grammar",part:"engGrammar",q:"23. Do you have ____ eggs?",options:["A) an","B) -","C) a","D) the"],answer:1,explanation:"Eggs көпше түрде тұр. Жалпы сұрақта артикль қажет емес: Do you have eggs? Дұрыс жауап — B."},
+{section:"Grammar",part:"engGrammar",q:"24. Make up a sentence from the words given below: Astana / friends / in / we / met / our",options:["A) In friends we met our Astana","B) We our friends met in Astana","C) We met our friends in Astana","D) Our friends in Astana met we"],answer:2,explanation:"Дұрыс сөз тәртібі: subject + verb + object + place. We met our friends in Astana. Дұрыс жауап — C."},
+{section:"Grammar",part:"engGrammar",q:"25. ____ his work he started to plan his holiday.",options:["A) Having finished","B) Having finishing","C) Finished","D) Being finished"],answer:0,explanation:"Бір әрекет аяқталғаннан кейін екінші әрекет басталғанын көрсету үшін Having finished қолданылады. Дұрыс жауап — A."},
+{section:"Grammar",part:"engGrammar",q:"26. ____ I have a look at this photo?",options:["A) Have to","B) Has to","C) May","D) Ought"],answer:2,explanation:"Рұқсат сұрағанда May I...? құрылымы қолданылады. Сондықтан дұрыс жауап — C."},
+{section:"Grammar",part:"engGrammar",q:"27. Maria has three ____.",options:["A) peach","B) peachs","C) peachies","D) peaches"],answer:3,explanation:"Peach сөзінің көпше түрі -es арқылы жасалады: peaches. Дұрыс жауап — D."},
+{section:"Grammar",part:"engGrammar",q:"28. Advertising is very old. Examples of advertising ____ as far back as ancient Greece, where criers ____ out messages about their clients’ wares to the public.",options:["A) would be found / had been shouted","B) have found / were shouting","C) can be found / shouted","D) used to find / had been shouting"],answer:2,explanation:"Examples can be found — “мысалдарды табуға болады”. Екінші бөлікте өткен шақтағы әрекет: criers shouted messages. Дұрыс жауап — C."},
+{section:"Grammar",part:"engGrammar",q:"29. You ____ come with us if you don't want to.",options:["A) don't have","B) mustn’t","C) don't have to","D) haven't to"],answer:2,explanation:"Мағынасы: қаламасаң, бізбен келуің міндетті емес. Бұл үшін don’t have to қолданылады. Mustn’t — тыйым салу, бұл жерде сәйкес емес. Дұрыс жауап — C."},
+{section:"Grammar",part:"engGrammar",q:"30. They covered the goods with canvas lest they ____ by rain.",options:["A) be damaged","B) be damage","C) damage","D) damaged"],answer:0,explanation:"Lest құрылымынан кейін subjunctive/passive форма қолданылады: lest they be damaged. Дұрыс жауап — A."},
+{section:"Grammar",part:"engGrammar",q:"31. We asked how ____ to the station.",options:["A) getting","B) to got","C) to get","D) get to"],answer:2,explanation:"How + to infinitive құрылымы қолданылады: how to get to the station. Дұрыс жауап — C."},
+{section:"Grammar",part:"engGrammar",q:"32. Coffee now is ____ widely traded commodity after oil.",options:["A) the second","B) a second","C) two","D) second"],answer:0,explanation:"Реттік сан есім алдында the қолданылады: the second widely traded commodity. Дұрыс жауап — A."},
+{section:"Grammar",part:"engGrammar",q:"33. My brother drove ____ along the narrow road.",options:["A) careless","B) carefuly","C) careful","D) carefully"],answer:3,explanation:"Drove — етістік, оны сипаттау үшін үстеу керек. Careful — сын есім, carefully — үстеу. Дұрыс жауап — D."},
+{section:"Grammar",part:"engGrammar",q:"34. My friend cut ____ when she was cooking.",options:["A) himself","B) herself","C) her","D) herselves"],answer:1,explanation:"My friend ... she болғандықтан reflexive pronoun — herself. Дұрыс жауап — B."},
 
-    item.options.forEach((option, optionIndex) => {
-      html += `
-        <label>
-          <input type="radio" name="${namePrefix}${index}" value="${optionIndex}">
-          ${option}
-        </label>
-      `;
-    });
+{section:"Reading",part:"engReading1",q:"35. Where is Chicago in the United States?",options:["A) The east coast","B) The midwest","C) The south","D) The west coast"],answer:1,explanation:"Мәтінде Chicago “This midwestern metropolis” деп берілген. Сондықтан дұрыс жауап — B) The midwest."},
+{section:"Reading",part:"engReading1",q:"36. What sport do the Chicago Cubs play in Wrigley Field?",options:["A) Rugby","B) Baseball","C) Soccer","D) Football"],answer:1,explanation:"Мәтінде Keith loves baseball және Chicago Cubs game көргені айтылған. Сондықтан Cubs ойнайтын спорт — baseball."},
+{section:"Reading",part:"engReading1",q:"37. In the stadium, Keith and the other fans cheered for the Cubs. Keith was happy that the Cubs won with a score of ____.",options:["A) 5 - 3","B) 4 - 5","C) 3 - 2","D) 5 - 4"],answer:3,explanation:"Мәтінде Cubs won with a score of 5-4 деп нақты жазылған. Дұрыс жауап — D."},
+{section:"Reading",part:"engReading1",q:"38. Why was Keith impressed by the Chicago Water Tower?",options:["A) It is the tallest building in the city.","B) It supplies water to the entire population.","C) It is the only remaining monument of the World's Fair.","D) It is one of few landmarks that survived a historical fire."],answer:3,explanation:"Мәтінде Water Tower Great Chicago Fire of 1871 оқиғасынан аман қалған аз тарихи орындардың бірі екені айтылған. Дұрыс жауап — D."},
+{section:"Reading",part:"engReading1",q:"39. Keith found the Chicago Water Tower impressive as it is one of the few remaining landmarks to have survived the Great Chicago Fire of ____.",options:["A) 1875","B) 1871","C) 1892","D) 1884"],answer:1,explanation:"Мәтінде Great Chicago Fire of 1871 деп нақты берілген. Дұрыс жауап — B."},
+{section:"Reading",part:"engReading1",q:"40. What event was important for Chicago in 1892?",options:["A) Wrigley Field was constructed.","B) The Great Fire destroyed a large part of the town.","C) The World's Fair took place here.","D) Jackson Park became open to the public."],answer:2,explanation:"Мәтінде Jackson Park hosted the World's Fair of 1892 деп жазылған. Сондықтан дұрыс жауап — C."},
+{section:"Reading",part:"engReading1",q:"41. How did Keith arrive to the rooftop of the Willis Tower?",options:["A) He took an outdoor elevator.","B) He used an indoor elevator.","C) He climbed the building's exterior.","D) He walked up the interior stairs."],answer:3,explanation:"Мәтінде Keith managed to climb the stairs inside of the Willis Tower деп айтылған. Яғни ол ішкі баспалдақпен көтерілген. Дұрыс жауап — D."},
+{section:"Reading",part:"engReading1",q:"42. During the last part of his visit, Keith managed to climb the stairs inside of the Willis Tower, a ____ story skyscraper.",options:["A) 100","B) 110","C) 120","D) 130"],answer:1,explanation:"Мәтінде Willis Tower a 110-story skyscraper деп берілген. Дұрыс жауап — B."},
 
-    html += `</div>`;
-    container.innerHTML += html;
-  });
+{section:"Reading",part:"engReading2",q:"43. Yellowstone is an important national park in the United States because:",options:["A) It is the country's first national park.","B) It is the largest U.S. national park.","C) It is the most ecologically diverse natural park.","D) It is the most visited U.S. national park."],answer:0,explanation:"Мәтіннің бірінші сөйлемінде Yellowstone first national park in the United States деп айтылған. Сондықтан дұрыс жауап — A."},
+{section:"Reading",part:"engReading2",q:"44. When did Lisa and her friends visit Yellowstone National Park?",options:["A) Last spring","B) Last summer","C) Last autumn","D) Last winter"],answer:2,explanation:"Мәтінде Last fall деп жазылған. Fall = autumn. Сондықтан дұрыс жауап — C) Last autumn."},
+{section:"Reading",part:"engReading2",q:"45. Where did Lisa and her friends stay during their visit to the park?",options:["A) In a log cabin","B) In a rental home","C) At a hotel","D) At a campground"],answer:3,explanation:"Мәтінде they arranged to stay at one of the park's many convenient campsites деп айтылған. Campsite/campground мағынасы сәйкес. Дұрыс жауап — D."},
+{section:"Reading",part:"engReading2",q:"46. All of the following are animals that Lisa saw during her trip except:",options:["A) Grizzly bears","B) Wild horses","C) Gray wolves","D) Bald eagles"],answer:1,explanation:"Мәтінде grizzly bears, gray wolves, bald eagles айтылған. Wild horses айтылмаған. Сондықтан дұрыс жауап — B."},
+{section:"Reading",part:"engReading2",q:"47. They even spent an afternoon swimming in ____ Boiling River.",options:["A) Big Bend's","B) Yellowstone's","C) Grand Canyon's","D) White Sands's"],answer:1,explanation:"Мәтінде Yellowstone's Boiling River деп нақты жазылған. Дұрыс жауап — B."},
+{section:"Reading",part:"engReading2",q:"48. Since Yellowstone contains many hot springs and the world's largest area of active geysers, ____ and her friends visited many different geyser sites.",options:["A) Asel","B) Lisa","C) John","D) Anna"],answer:1,explanation:"Мәтіндегі басты кейіпкер — Lisa. Сондықтан Lisa and her friends visited geyser sites. Дұрыс жауап — B."},
+{section:"Reading",part:"engReading2",q:"49. Why did Lisa and her friends wait patiently when visiting Old Faithful?",options:["A) They arrived an hour before the geyser opened to the public.","B) They were still wet from swimming in the Boiling River.","C) There was a long line to see the geyser.","D) The geyser took about 40 minutes to erupt."],answer:3,explanation:"Мәтінде After about 40 minutes, a stream of boiling water... деп жазылған. Олар geyser атқылағанша 40 минуттай күткен. Дұрыс жауап — D."},
+{section:"Reading",part:"engReading2",q:"50. Yellowstone National Park, located in Idaho, Montana, and Wyoming, was established as the first national park in the ____.",options:["A) Canada","B) United Kingdom","C) United States"],answer:2,explanation:"Мәтіннің бірінші сөйлемінде first national park in the United States деп нақты айтылған. Дұрыс жауап — C."}
+];
+
+function renderQuiz(containerId,questions,namePrefix){
+const container=document.getElementById(containerId);
+questions.forEach((item,index)=>{
+let html=`<div class="question"><b>${item.q}</b>`;
+if(item.image){html+=`<img src="${item.image}" alt="Question image" class="question-image">`}
+item.options.forEach((option,optionIndex)=>{
+html+=`<label><input type="radio" name="${namePrefix}${index}" value="${optionIndex}"> ${option}</label>`;
+});
+html+=`</div>`;
+container.innerHTML+=html;
+});
 }
 
-renderQuiz("criticalQuiz", criticalQuestions, "critical");
-renderQuiz("analyticalIntro", analyticalIntroQuestions, "analyticalIntro");
-renderQuiz("analyticalText1", analyticalText1Questions, "analyticalText1");
-renderQuiz("analyticalText2", analyticalText2Questions, "analyticalText2");
-renderQuiz("analyticalText3", analyticalText3Questions, "analyticalText3");
-renderQuiz("analyticalText4", analyticalText4Questions, "analyticalText4");
+function renderEnglish(){
+englishQuestions.forEach((item,index)=>{
+const container=document.getElementById(item.part);
+let html=`<div class="question"><b>${item.q}</b>`;
+item.options.forEach((option,optionIndex)=>{
+html+=`<label><input type="radio" name="eng${index}" value="${optionIndex}"> ${option}</label>`;
+});
+html+=`</div>`;
+container.innerHTML+=html;
+});
+}
 
-function checkGroup(questions, namePrefix){
-  let score = 0;
-  let html = "";
+renderQuiz("criticalQuiz",criticalQuestions,"critical");
+renderQuiz("analyticalIntro",analyticalIntroQuestions,"analyticalIntro");
+renderQuiz("analyticalText1",analyticalText1Questions,"analyticalText1");
+renderQuiz("analyticalText2",analyticalText2Questions,"analyticalText2");
+renderQuiz("analyticalText3",analyticalText3Questions,"analyticalText3");
+renderQuiz("analyticalText4",analyticalText4Questions,"analyticalText4");
+renderEnglish();
 
-  questions.forEach((item, index) => {
-    const selected = document.querySelector(`input[name="${namePrefix}${index}"]:checked`);
-    const userAnswer = selected ? Number(selected.value) : null;
+function checkGroup(questions,namePrefix){
+let score=0;
+let html="";
+questions.forEach((item,index)=>{
+const selected=document.querySelector(`input[name="${namePrefix}${index}"]:checked`);
+const userAnswer=selected?Number(selected.value):null;
+if(userAnswer===item.answer){
+score++;
+html+=`<p class="correct">✔ ${item.q}</p>`;
+}else{
+html+=`<p class="wrong">✘ ${item.q}</p>`;
+}
+html+=`
+<div class="explanation">
+<b>Дұрыс жауап:</b> ${item.options[item.answer]}<br>
+<b>Сіздің жауабыңыз:</b> ${userAnswer!==null?item.options[userAnswer]:"Жауап берілмеді"}<br>
+<b>Түсіндірме:</b> ${item.explanation}
+</div>`;
+});
+return {score,html};
+}
 
-    if(userAnswer === item.answer){
-      score++;
-      html += `<p class="correct">✔ ${item.q}</p>`;
-    } else {
-      html += `<p class="wrong">✘ ${item.q}</p>`;
-    }
-
-    html += `
-      <div class="explanation">
-        <b>Дұрыс жауап:</b> ${item.options[item.answer]}<br>
-        <b>Сіздің жауабыңыз:</b> ${userAnswer !== null ? item.options[userAnswer] : "Жауап берілмеді"}<br>
-        <b>Түсіндірме:</b> ${item.explanation}
-      </div>
-    `;
-  });
-
-  return {score, html};
+function checkEnglish(){
+let score=0,listeningScore=0,grammarScore=0,readingScore=0,html="";
+englishQuestions.forEach((item,index)=>{
+const selected=document.querySelector(`input[name="eng${index}"]:checked`);
+const userAnswer=selected?Number(selected.value):null;
+if(userAnswer===item.answer){
+score++;
+if(item.section==="Listening") listeningScore++;
+if(item.section==="Grammar") grammarScore++;
+if(item.section==="Reading") readingScore++;
+html+=`<p class="correct">✔ ${item.q}</p>`;
+}else{
+html+=`<p class="wrong">✘ ${item.q}</p>`;
+}
+html+=`
+<div class="explanation">
+<b>Дұрыс жауап:</b> ${item.options[item.answer]}<br>
+<b>Сіздің жауабыңыз:</b> ${userAnswer!==null?item.options[userAnswer]:"Жауап берілмеді"}<br>
+<b>Түсіндірме:</b> ${item.explanation}
+</div>`;
+});
+return {score,listeningScore,grammarScore,readingScore,html};
 }
 
 function checkAnswers(){
-  const critical = checkGroup(criticalQuestions, "critical");
-  const aIntro = checkGroup(analyticalIntroQuestions, "analyticalIntro");
-  const aText1 = checkGroup(analyticalText1Questions, "analyticalText1");
-  const aText2 = checkGroup(analyticalText2Questions, "analyticalText2");
-  const aText3 = checkGroup(analyticalText3Questions, "analyticalText3");
-  const aText4 = checkGroup(analyticalText4Questions, "analyticalText4");
+const critical=checkGroup(criticalQuestions,"critical");
+const aIntro=checkGroup(analyticalIntroQuestions,"analyticalIntro");
+const aText1=checkGroup(analyticalText1Questions,"analyticalText1");
+const aText2=checkGroup(analyticalText2Questions,"analyticalText2");
+const aText3=checkGroup(analyticalText3Questions,"analyticalText3");
+const aText4=checkGroup(analyticalText4Questions,"analyticalText4");
+const english=checkEnglish();
 
-  const analyticalScore = aIntro.score + aText1.score + aText2.score + aText3.score + aText4.score;
-  const totalScore = critical.score + analyticalScore;
+const analyticalScore=aIntro.score+aText1.score+aText2.score+aText3.score+aText4.score;
+const totalScore=critical.score+analyticalScore+english.score;
 
-  let level = "";
-  let messageKaz = "";
-  let messageRus = "";
+let level="",messageKaz="",messageRus="";
+if(totalScore<=30){
+level="Бастапқы деңгей / Начальный уровень";
+messageKaz="Сізге әлі көбірек дайындық керек.";
+messageRus="Вам нужно ещё больше подготовиться.";
+}else if(totalScore<=60){
+level="Орташа деңгей / Средний уровень";
+messageKaz="Негізгі түсінік бар, бірақ қосымша практика қажет.";
+messageRus="Базовое понимание есть, но нужна дополнительная практика.";
+}else{
+level="Жақсы дайындық / Хорошая готовность";
+messageKaz="Нәтижеңіз жақсы. Енді тұрақты қайталау маңызды.";
+messageRus="Результат хороший. Теперь важно регулярно повторять.";
+}
 
-  if(totalScore <= 10){
-    level = "Бастапқы деңгей / Начальный уровень";
-    messageKaz = "Сізге әлі көбірек дайындық керек.";
-    messageRus = "Вам нужно ещё больше подготовиться.";
-  } else if(totalScore <= 22){
-    level = "Орташа деңгей / Средний уровень";
-    messageKaz = "Негізгі түсінік бар, бірақ қосымша практика қажет.";
-    messageRus = "Базовое понимание есть, но нужна дополнительная практика.";
-  } else {
-    level = "Жақсы дайындық / Хорошая готовность";
-    messageKaz = "Нәтижеңіз жақсы. Енді тұрақты қайталау маңызды.";
-    messageRus = "Результат хороший. Теперь важно регулярно повторять.";
-  }
+const finalBlock=`
+<div class="result-box">
+<h2>Жалпы нәтижеңіз: ${totalScore}/80</h2>
+<h2>${level}</h2>
+<p>${messageKaz}</p>
+<p>${messageRus}</p>
+<div class="score-grid">
+<div class="score-item">Сыни ойлау: ${critical.score}/15</div>
+<div class="score-item">Аналитикалық ойлау: ${analyticalScore}/15</div>
+<div class="score-item">English: ${english.score}/50</div>
+<div class="score-item">Listening: ${english.listeningScore}/16</div>
+<div class="score-item">Lexico-Grammar: ${english.grammarScore}/18</div>
+<div class="score-item">Texts: ${english.readingScore}/16</div>
+</div>
+</div>`;
 
-  const finalBlock = `
-    <div class="result-box">
-      <h2>Жалпы нәтижеңіз: ${totalScore}/30</h2>
-      <h2>${level}</h2>
-      <p>${messageKaz}</p>
-      <p>${messageRus}</p>
+document.getElementById("results").innerHTML=finalBlock;
 
-      <div class="score-grid">
-        <div class="score-item">Сыни ойлау: ${critical.score}/15</div>
-        <div class="score-item">Аналитикалық ойлау: ${analyticalScore}/15</div>
-      </div>
-    </div>
-  `;
+document.getElementById("criticalResults").innerHTML=
+"<h2>Сыни ойлау жауаптары</h2>"+critical.html;
 
-  document.getElementById("results").innerHTML = finalBlock;
+document.getElementById("analyticalResults").innerHTML=
+"<h2>Аналитикалық ойлау жауаптары</h2>"+aIntro.html+aText1.html+aText2.html+aText3.html+aText4.html;
 
-  document.getElementById("criticalResults").innerHTML =
-    "<h2>Сыни ойлау жауаптары</h2>" + critical.html;
+document.getElementById("englishResults").innerHTML=
+"<h2>English жауаптары</h2>"+english.html;
 
-  document.getElementById("analyticalResults").innerHTML =
-    "<h2>Аналитикалық ойлау жауаптары</h2>" +
-    aIntro.html + aText1.html + aText2.html + aText3.html + aText4.html;
-
-  document.getElementById("results").scrollIntoView({
-    behavior:"smooth"
-  });
+document.getElementById("results").scrollIntoView({behavior:"smooth"});
 }
 </script>
 
